@@ -1,0 +1,63 @@
+{
+  "name": "pc-vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vite",
+    "build": "vite build",
+    "lint": "eslint --ext .js,.jsx,.vue src/",
+    "lint-fix": "eslint --fix --ext .js,.jsx,.vue src/",
+    "stylelint": "stylelint **/*.{css,scss,less,vue}",
+    "stylelint-fix": "stylelint --fix **/*.{css,scss,less,vue}"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.0.4",
+    "axios": "^0.27.2",
+    "core-js": "^3.22.8",
+    "element-plus": "^2.2.4",
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.15",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@frsource/vite-plugin-stylelint": "^0.0.7",
+    "@tencent/eslint-config-tencent": "^1.0.4",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/compiler-sfc": "^3.2.37",
+    "babel-eslint": "^10.1.0",
+    "chalk": "^5.0.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^9.1.0",
+    "husky": "^4.3.6",
+    "lint-staged": "^13.0.0",
+    "prettier": "^2.6.2",
+    "sass": "^1.52.2",
+    "stylelint": "^13.12.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-webpack-plugin": "^2.1.1",
+    "vite": "^2.9.10",
+    "vite-plugin-eslint": "^1.6.1",
+    "vite-plugin-html": "^3.2.0",
+    "vue-eslint-parser": "^9.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.{html,js,vue}": [
+      "eslint"
+    ],
+    "**/*.{css,sass,scss}": [
+      "stylelint"
+    ]
+  }
+}

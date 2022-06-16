@@ -1,0 +1,95 @@
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  color: #409eff;
+  text-decoration: none;
+}
+body {
+  overflow-x: hidden;
+}
+
+/* =============== element-ui样式重置 start ================ */
+// 去掉menu菜单右边的border，避免切换黑白时有问题
+.el-menu {
+  border-right: none;
+}
+
+// tooltip设置最大宽度
+.el-popper {
+  max-width: 800px !important;
+}
+
+/* =============== element-ui样式重置 end ================== */
+
+/* ==================== 全局样式 start ===================== */
+
+/* 所有全局样式都放在这里，约定以g-作为前缀                      */
+.g-subtitle {
+  display: inline-block;
+  margin-top: 4px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 650;
+  font-size: 16px;
+  line-height: 20px;
+  &::before {
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    margin-top: -3px;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-color: #2685e6;
+    content: '';
+  }
+}
+
+/* ==================== 全局样式 end ===================== */
+
+/* ==================== 其他固有样式 start ===================== */
+// svg
+
+/* ==================== 其他固有样式 end ===================== */
