@@ -1,0 +1,20 @@
+/* =============== element-ui样式重置 start ================ */
+// 去掉menu菜单右边的border，避免切换黑白时有问题
+.el-menu {
+  border-right: none;
+}
+
+// tooltip设置最大宽度
+.el-popper {
+  max-width: 800px !important;
+}
+// divider 设置线条颜色
+.el-divider {
+  border-color: rgba(196, 196, 204, 0.35)
+}
+// 移除 main 容器的 padding
+.el-main {
+  padding: 0;
+}
+
+/* =============== element-ui样式重置 end ================== */

@@ -1,0 +1,24 @@
+/* ==================== 全局样式 start ===================== */
+
+/* 所有全局样式都放在这里，约定以g-作为前缀                      */
+.g-subtitle {
+  display: inline-block;
+  margin-top: 4px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 650;
+  font-size: 16px;
+  line-height: 20px;
+
+  &::before {
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    margin-top: -3px;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-color: #2685e6;
+    content: '';
+  }
+}
+/* ==================== 全局样式 end ===================== */

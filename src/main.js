@@ -8,7 +8,7 @@ import App from './app.vue';
 import router from './router';
 import store from './store';
 
-import '@/assets/style/common.scss';
+import '@/assets/style/index.scss';
 
 // 全局组件
 import BaseTable from '@/components/base-table.vue';

@@ -1,0 +1,9 @@
+@import "vars";
+
+@each $justify in $justify-types {
+  .justify-#{$justify} {
+    display: flex;
+    justify-content: $justify;
+    align-items: center;
+  }
+}
