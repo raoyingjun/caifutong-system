@@ -8,13 +8,27 @@
 .el-popper {
   max-width: 800px !important;
 }
+
 // divider 设置线条颜色
 .el-divider {
-  border-color: rgba(196, 196, 204, 0.35)
+  border-color: rgba(196, 196, 204, 0.35);
 }
+
 // 移除 main 容器的 padding
 .el-main {
   padding: 0;
+}
+
+// 统一 input 高度&行高
+.el-form-item {
+  .el-form-item__label,
+  .el-input,
+  .el-date-editor {
+    line-height: 36px;
+    height: 36px;
+  }
+
+  margin-bottom: 24px;
 }
 
 /* =============== element-ui样式重置 end ================== */

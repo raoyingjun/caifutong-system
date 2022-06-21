@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div>
     <div class="content" :style="{ height: modelValue ? height : visibleHeight }">
       <slot />
     </div>
     <el-divider>
       <el-button type="primary" link @click="$emit('update:modelValue', !modelValue)">
         {{ modelValue ? closeText : openText }}
-        <el-icon class="icon">
+        <el-icon class="g-icon">
           <img :src="modelValue ? closeIcon : openIcon" />
         </el-icon>
       </el-button>
@@ -24,7 +24,7 @@ defineProps({
   },
   visibleHeight: {
     type: String,
-    default: '72px',
+    default: '86px',
   },
   openText: {
     type: String,
@@ -39,10 +39,7 @@ defineProps({
 defineEmits(['update:modelValue']);
 </script>
 <style scoped lang="scss">
-.icon {
-  width: 13px;
-  height: 13px;
-  margin-left: 4px;
-  vertical-align: middle;
+.content {
+  overflow: hidden;
 }
 </style>

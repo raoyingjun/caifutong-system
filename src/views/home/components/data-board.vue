@@ -1,5 +1,5 @@
 <template>
-  <base-card style="margin-left: 0" label="数据看板">
+  <base-card margin="trb" label="数据看板">
     <div
       v-for="board in dataBoardList"
       :key="board.url"

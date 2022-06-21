@@ -1,0 +1,36 @@
+@import "vars";
+// 设置不同尺寸 padding，margin 的间距大小
+@each $size, $gap in $gap-sizes {
+  // margin
+  .m-#{$size} {
+    margin: $gap
+  }
+  .mt-#{$size} {
+    margin-top: $gap;
+  }
+  .mr-#{$size} {
+    margin-right: $gap
+  }
+  .mb-#{$size} {
+    margin-bottom: $gap
+  }
+  .ml-#{$size} {
+    margin-left: $gap
+  }
+  // padding
+  .p-#{$size} {
+    padding: $gap
+  }
+  .pt-#{$size} {
+    padding-top: $gap
+  }
+  .pr-#{$size} {
+    padding-right: $gap
+  }
+  .pb-#{$size} {
+    padding-bottom: $gap
+  }
+  .pl-#{$size} {
+    padding-left: $gap
+  }
+}

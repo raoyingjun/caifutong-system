@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import childrenRoutes from '@/router/routes';
+import { routeName } from './enum';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -8,7 +9,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'Layout',
-      redirect: '/home',
+      redirect: { name: routeName.HomeOverViewSendDocumentList },
       component: () => import(/* webpackChunkName: "Layout"*/ '@/components/layout.vue'),
       children: childrenRoutes,
     },

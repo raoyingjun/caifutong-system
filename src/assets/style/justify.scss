@@ -1,5 +1,5 @@
 @import "vars";
-
+// 设置 flex 布局 justify 对齐方式
 @each $justify in $justify-types {
   .justify-#{$justify} {
     display: flex;
