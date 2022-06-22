@@ -20,13 +20,13 @@
       </div>
       <el-row v-for="(notice, index) in notices" :key="index" class="mb-small">
         <el-col :span="1">
-          <el-icon style="width: 26px; height: 16px">
-            <img :src="`/src/assets/img/icons/home_notice_seq_0${index + 1}.svg`" />
+          <el-icon class="seq" :class="index < 3 ? `seq-${index + 1}` : ''">
+            {{ `0${index + 1}` }}
           </el-icon>
         </el-col>
         <el-col :span="14">
           {{ notice.title }}
-          <el-tag class="tag ml-small" v-if="index < 3">置顶</el-tag>
+          <el-tag v-if="index < 3" class="tag ml-small">置顶</el-tag>
         </el-col>
         <el-col :span="5" class="g-text-secondary"> {{ notice.author }}</el-col>
         <el-col :span="4" class="g-text-secondary justify-end"> {{ notice.time }}</el-col>
@@ -76,7 +76,6 @@ const notices = ref(
     font-family: TencentSans;
     border: 1px solid #1573ff;
     border-radius: 4px;
-
     &-icon {
       width: 40px;
       height: 36px;
@@ -88,7 +87,23 @@ const notices = ref(
       text-align: center;
     }
   }
-
+  .seq {
+    width: 26px;
+    height: 16px;
+    color: #d0d0d0;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: TencentSans;
+    &-1 {
+      color: #d9001b;
+    }
+    &-2 {
+      color: #ed7b2f;
+    }
+    &-3 {
+      color: #f7c797;
+    }
+  }
   .tag {
     width: 36px;
     height: 18px;
