@@ -54,10 +54,10 @@
     </el-form>
   </view-more>
   <div class="justify-end">
-    <el-link type="primary" :underline="false">
+    <el-link :underline="false" type="primary">
       查看更多
-      <el-icon class="g-icon">
-        <img src="@/assets/img/icons/view_more.svg" />
+      <el-icon :size="12" style="margin-left: 4px">
+        <img src="/src/assets/img/icons/view_more.svg" />
       </el-icon>
     </el-link>
   </div>
@@ -70,8 +70,7 @@
     <el-table-column label="收文类型" prop="gzhName"></el-table-column>
     <el-table-column label="紧急程度" prop="gzhID"></el-table-column>
     <el-table-column label="发布时间" prop="protocolID"></el-table-column>
-    <el-table-column label="账号类型" prop="accountType"></el-table-column>
-    <el-table-column label="公众号ID" prop="gzhID"></el-table-column>
+    <el-table-column label="操作" prop="accountType"></el-table-column>
   </base-table>
 </template>
 
@@ -79,6 +78,7 @@
 import { ref } from 'vue';
 import BaseSelect from '../../components/base-select.vue';
 import ViewMore from '@/components/view-more.vue';
+
 const overflowVisible = ref(false);
 </script>
 <style scoped lang="scss">
@@ -107,9 +107,5 @@ const overflowVisible = ref(false);
       bottom: 16px;
     }
   }
-}
-.g-icon {
-  width: 11.22px;
-  height: 11.4px;
 }
 </style>

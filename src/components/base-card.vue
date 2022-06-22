@@ -1,5 +1,5 @@
 <template>
-  <div class="base-card p-middle" :class="marginClass">
+  <div class="card pv-small ph-middle" :class="marginClass">
     <base-label v-if="$slots.label">
       <slot name="label" />
     </base-label>
@@ -27,8 +27,9 @@ const props = defineProps({
 const marginClass = computed(() => props.margin.split('').map((dir) => `m${dir}-${props.marginSize}`));
 </script>
 <style scoped lang="scss">
-.base-card {
+.card {
   background-color: #fff;
   border-radius: 8px;
+  box-shadow: 0 5px 20px 0 rgba(50, 57, 91, 0.1);
 }
 </style>

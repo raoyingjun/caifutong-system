@@ -54,10 +54,10 @@
     </el-form>
   </view-more>
   <div class="justify-end">
-    <el-link type="primary" :underline="false">
+    <el-link :underline="false" type="primary">
       查看更多
-      <el-icon class="g-icon">
-        <img src="@/assets/img/icons/view_more.svg" />
+      <el-icon :size="12" style="margin-left: 4px">
+        <img src="/src/assets/img/icons/view_more.svg" />
       </el-icon>
     </el-link>
   </div>
@@ -107,9 +107,5 @@ const overflowVisible = ref(false);
       bottom: 16px;
     }
   }
-}
-.g-icon {
-  width: 11.22px;
-  height: 11.4px;
 }
 </style>

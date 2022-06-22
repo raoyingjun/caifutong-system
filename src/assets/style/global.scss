@@ -22,11 +22,38 @@
   }
 }
 
-.g-icon {
-  width: 13px;
-  height: 13px;
-  margin-left: 4px;
-  vertical-align: middle;
+.g {
+  &-subtitle {
+    display: inline-block;
+    margin-top: 4px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 650;
+    font-size: 16px;
+    line-height: 20px;
+
+    &::before {
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      margin-top: -3px;
+      margin-right: 10px;
+      vertical-align: middle;
+      background-color: #2685e6;
+      content: '';
+    }
+  }
+
+  // 文本对应的颜色
+  &-text {
+    &-primary {
+      color: #333333
+    }
+
+    &-secondary {
+      color: #888888
+    }
+  }
 }
 
 /* ==================== 全局样式 end ===================== */

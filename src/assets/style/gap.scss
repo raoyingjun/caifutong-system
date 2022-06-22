@@ -1,9 +1,22 @@
 @import "vars";
 // 设置不同尺寸 padding，margin 的间距大小
+// t-> top, l -> left, b -> bottom, r -> right, v-> vertical, h->horizontal
 @each $size, $gap in $gap-sizes {
   // margin
   .m-#{$size} {
     margin: $gap
+  }
+  .mv-#{$size} {
+    margin: {
+      top: $gap;
+      bottom: $gap;
+    }
+  }
+  .mh-#{$size} {
+    margin: {
+      left: $gap;
+      right: $gap;
+    }
   }
   .mt-#{$size} {
     margin-top: $gap;
@@ -20,6 +33,18 @@
   // padding
   .p-#{$size} {
     padding: $gap
+  }
+  .pv-#{$size} {
+    padding: {
+      top: $gap;
+      bottom: $gap;
+    }
+  }
+  .ph-#{$size} {
+    padding: {
+      left: $gap;
+      right: $gap;
+    }
   }
   .pt-#{$size} {
     padding-top: $gap

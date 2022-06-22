@@ -4,12 +4,12 @@
       <slot />
     </div>
     <el-divider>
-      <el-button type="primary" link @click="$emit('update:modelValue', !modelValue)">
+      <el-link :underline="false" type="primary" @click="$emit('update:modelValue', !modelValue)">
         {{ modelValue ? closeText : openText }}
-        <el-icon class="g-icon">
+        <el-icon :size="13" style="margin-left: 4px">
           <img :src="modelValue ? closeIcon : openIcon" />
         </el-icon>
-      </el-button>
+      </el-link>
     </el-divider>
   </div>
 </template>
