@@ -63,14 +63,14 @@
   </div>
   <base-table :total="120" class="mt-24" :data="sendDocumentList">
     <el-table-column label="序号" type="index" :index="formatIndex" width="63"></el-table-column>
-    <el-table-column label="签发文号" prop="signName"></el-table-column>
-    <el-table-column label="文档名称" prop="title"></el-table-column>
+    <el-table-column label="签发文号" prop="signName" width="160"></el-table-column>
+    <el-table-column label="文档名称" prop="title" width="150"></el-table-column>
     <el-table-column label="收文主体" prop="incomingBody"></el-table-column>
     <el-table-column label="收文类型" prop="incomingType"></el-table-column>
     <el-table-column label="紧急程度" prop="urgency"></el-table-column>
     <el-table-column label="会签人" prop="signSendPeople"></el-table-column>
     <el-table-column label="签发人" prop="signSendPeople"></el-table-column>
-    <el-table-column label="发布时间" prop="time"></el-table-column>
+    <el-table-column label="发布时间" prop="time" width="153"></el-table-column>
     <el-table-column label="操作" width="90">
       <template #default>
         <el-link :underline="false" type="primary">查看详情</el-link>
@@ -101,39 +101,3 @@ const sendDocumentList = ref(
     })),
 );
 </script>
-<style scoped lang="scss">
-// 统一 input 高度&行高
-:deep(.el-form-item) {
-  .el-form-item__content {
-    width: 216.67px;
-  }
-
-  .el-form-item__label,
-  .el-input,
-  .el-date-editor {
-    height: 28px;
-    line-height: 28px;
-  }
-
-  margin: {
-    right: 0;
-    bottom: 16px;
-  }
-}
-:deep(.el-divider) {
-  &.el-divider--horizontal {
-    margin: {
-      top: 0;
-      bottom: 16px;
-    }
-  }
-}
-:deep(.el-button) {
-  padding: 6px 16px;
-}
-:deep(.el-table) {
-  .el-table__cell {
-    padding: 8px 0;
-  }
-}
-</style>
