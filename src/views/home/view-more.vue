@@ -24,7 +24,7 @@
       </el-row>
     </el-form>
     <base-table :total="120" class="mt-middle" :data="notices">
-      <el-table-column type="index" width="82" label="序号" />
+      <el-table-column type="index" width="82" label="序号" :index="formatIndex" />
       <el-table-column label="标题" prop="title"></el-table-column>
       <el-table-column label="发布人" prop="author" width="337"></el-table-column>
       <el-table-column label="发布时间" prop="time" width="170"></el-table-column>
@@ -33,7 +33,7 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-
+import { formatIndex } from '@/utils/formatter';
 const notices = ref(
   Array(10)
     .fill(undefined)

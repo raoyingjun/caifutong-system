@@ -61,16 +61,20 @@
       </el-icon>
     </el-link>
   </div>
-  <base-table :total="120" class="mt-24">
-    <el-table-column label="序号" prop="accountType"></el-table-column>
-    <el-table-column label="文档名称" prop="gzhName"></el-table-column>
-    <el-table-column label="来文单位" prop="gzhID"></el-table-column>
-    <el-table-column label="收文创建人" prop="protocolID"></el-table-column>
-    <el-table-column label="收文主体" prop="accountType"></el-table-column>
-    <el-table-column label="收文类型" prop="gzhName"></el-table-column>
-    <el-table-column label="紧急程度" prop="gzhID"></el-table-column>
-    <el-table-column label="发布时间" prop="protocolID"></el-table-column>
-    <el-table-column label="操作" prop="accountType"></el-table-column>
+  <base-table :total="120" class="mt-24" :data="sendDocumentList">
+    <el-table-column label="序号" type="index" :index="formatIndex" width="63"></el-table-column>
+    <el-table-column label="文档名称" prop="title"></el-table-column>
+    <el-table-column label="来文单位" prop="from"></el-table-column>
+    <el-table-column label="收文创建人" prop="incomingCreator"></el-table-column>
+    <el-table-column label="收文主体" prop="incomingBody"></el-table-column>
+    <el-table-column label="收文类型" prop="incomingType"></el-table-column>
+    <el-table-column label="紧急程度" prop="urgency"></el-table-column>
+    <el-table-column label="发布时间" prop="time"></el-table-column>
+    <el-table-column label="操作" width="90">
+      <template #default>
+        <el-link :underline="false" type="primary">查看详情</el-link>
+      </template>
+    </el-table-column>
   </base-table>
 </template>
 
@@ -78,8 +82,22 @@
 import { ref } from 'vue';
 import BaseSelect from '../../components/base-select.vue';
 import ViewMore from '@/components/view-more.vue';
+import { formatIndex } from '@/utils/formatter';
 
 const overflowVisible = ref(false);
+const sendDocumentList = ref(
+  Array(10)
+    .fill(undefined)
+    .map(() => ({
+      title: '这里是文档名称…',
+      from: '腾讯',
+      incomingCreator: 'irzhu(朱俊星)',
+      incomingBody: '总公司',
+      incomingType: '通知类',
+      urgency: '一般',
+      time: '2021/11/11 10:24:14',
+    })),
+);
 </script>
 <style scoped lang="scss">
 // 统一 input 高度&行高
@@ -106,6 +124,11 @@ const overflowVisible = ref(false);
       top: 0;
       bottom: 16px;
     }
+  }
+}
+:deep(.el-table) {
+  .el-table__cell {
+    padding: 8px 0;
   }
 }
 </style>
