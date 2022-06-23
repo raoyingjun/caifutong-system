@@ -11,7 +11,7 @@
           </div>
           <div class="notice-image-text">公告</div>
         </div>
-        <el-link :underline="false" type="primary">
+        <el-link :underline="false" type="primary" @click="$router.push({ name: routeName.HomeViewMore })">
           查看更多
           <el-icon :size="12" class="ml-4">
             <img src="/src/assets/img/icons/view_more.svg" />
@@ -36,6 +36,7 @@
 </template>
 <script setup>
 import { ref } from 'vue';
+import { routeName } from '@/router/enum';
 
 const notices = ref(
   Array(5)
