@@ -57,7 +57,6 @@ const notices = ref(
 
 .notice {
   align-items: stretch;
-  font-size: 14px;
 
   &-bar {
     height: 36px;

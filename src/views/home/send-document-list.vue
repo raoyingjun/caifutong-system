@@ -108,4 +108,7 @@ const overflowVisible = ref(false);
     }
   }
 }
+:deep(.el-button) {
+  padding: 6px 16px;
+}
 </style>
