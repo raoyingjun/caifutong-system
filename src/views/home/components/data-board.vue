@@ -1,9 +1,9 @@
 <template>
-  <base-card margin="trb" label="数据看板" class="pt-middle">
+  <base-card margin="trb" label="数据看板" class="pt-24">
     <div
       v-for="board in dataBoardList"
       :key="board.url"
-      class="data-board-item"
+      class="data-board-item mv-24 mh-0"
       :style="{ background: `url(${board.url})` }"
     >
       <div class="title">{{ board.title }}</div>
@@ -48,7 +48,6 @@ const dataBoardList = [
   box-sizing: border-box;
   width: 384px;
   height: 109px;
-  margin: 24px 0;
   border-radius: 8px;
   padding: {
     top: 18px;

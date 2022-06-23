@@ -1,4 +1,4 @@
 // flex justify-content 各对齐方式取值
 $justify-types: start, center, end, space-between, space-around, space-evenly;
 // padding, margin 各尺寸取值
-$gap-sizes: (mini: 8px, small: 16px, middle: 24px, large: 32px, larger: 40px)
+$gap-sizes: 0, 4, 8, 12, 16, 20, 24, 28, 32, 36

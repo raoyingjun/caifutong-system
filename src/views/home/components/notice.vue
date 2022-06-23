@@ -1,11 +1,11 @@
 <template>
   <base-card class="notice justify-space-between" margin="ltr">
     <img class="img" src="@/assets/img/images/home_notice_banner.jpg" />
-    <div style="flex: auto" class="ml-middle">
-      <div class="notice-bar justify-space-between mb-middle">
+    <div style="flex: auto" class="ml-24">
+      <div class="notice-bar justify-space-between mb-24">
         <div class="notice-image justify-space-between">
           <div class="notice-image-icon justify-center">
-            <el-icon :size="16" style="margin-left: 4px" class="icon">
+            <el-icon :size="16" class="icon ml-4">
               <img src="/src/assets/img/icons/home_notice_sound.svg" />
             </el-icon>
           </div>
@@ -13,12 +13,12 @@
         </div>
         <el-link :underline="false" type="primary">
           查看更多
-          <el-icon :size="12" style="margin-left: 4px">
+          <el-icon :size="12" class="ml-4">
             <img src="/src/assets/img/icons/view_more.svg" />
           </el-icon>
         </el-link>
       </div>
-      <el-row v-for="(notice, index) in notices" :key="index" class="mb-small">
+      <el-row v-for="(notice, index) in notices" :key="index" class="mb-16">
         <el-col :span="1">
           <el-icon class="seq" :class="index < 3 ? `seq-${index + 1}` : ''">
             {{ `0${index + 1}` }}
@@ -26,7 +26,7 @@
         </el-col>
         <el-col :span="14">
           {{ notice.title }}
-          <el-tag v-if="index < 3" class="tag ml-small">置顶</el-tag>
+          <el-tag v-if="index < 3" class="tag ml-16">置顶</el-tag>
         </el-col>
         <el-col :span="5" class="g-text-secondary"> {{ notice.author }}</el-col>
         <el-col :span="4" class="g-text-secondary justify-end"> {{ notice.time }}</el-col>
@@ -63,7 +63,7 @@ const notices = ref(
     height: 36px;
   }
 
-  .mb-small:last-child {
+  .mb-16:last-child {
     margin-bottom: 0;
   }
 

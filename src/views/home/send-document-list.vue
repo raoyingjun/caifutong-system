@@ -1,5 +1,5 @@
 <template>
-  <view-more v-model="overflowVisible" class="mt-middle">
+  <view-more v-model="overflowVisible" class="mt-24">
     <el-form :inline="true" label-width="105px">
       <el-row>
         <el-col :span="8">
@@ -56,12 +56,12 @@
   <div class="justify-end">
     <el-link :underline="false" type="primary">
       查看更多
-      <el-icon :size="12" style="margin-left: 4px">
+      <el-icon :size="12" class="ml-4">
         <img src="/src/assets/img/icons/view_more.svg" />
       </el-icon>
     </el-link>
   </div>
-  <base-table :total="120" class="mt-middle">
+  <base-table :total="120" class="mt-24">
     <el-table-column label="序号" prop="accountType"></el-table-column>
     <el-table-column label="签发文号" prop="gzhName"></el-table-column>
     <el-table-column label="文档名称" prop="gzhID"></el-table-column>

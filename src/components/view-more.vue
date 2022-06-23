@@ -6,7 +6,7 @@
     <el-divider>
       <el-link :underline="false" type="primary" @click="$emit('update:modelValue', !modelValue)">
         {{ modelValue ? closeText : openText }}
-        <el-icon :size="13" style="margin-left: 4px">
+        <el-icon :size="13" class="ml-4">
           <img :src="modelValue ? closeIcon : openIcon" />
         </el-icon>
       </el-link>

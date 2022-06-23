@@ -5,9 +5,7 @@
       <base-card>
         <template #label>
           <el-button @click="$router.push({ name: routeName.HomeOverViewSendDocumentList })">发文列表</el-button>
-          <el-button
-            style="margin-left: 4px"
-            @click="$router.push({ name: routeName.HomeOverViewIncomingDocumentList })"
+          <el-button class="ml-4" @click="$router.push({ name: routeName.HomeOverViewIncomingDocumentList })"
             >收文列表
           </el-button>
         </template>

@@ -1,61 +1,61 @@
 @import "vars";
 // 设置不同尺寸 padding，margin 的间距大小
 // t-> top, l -> left, b -> bottom, r -> right, v-> vertical, h->horizontal
-@each $size, $gap in $gap-sizes {
+@each $gap in $gap-sizes {
   // margin
-  .m-#{$size} {
-    margin: $gap
+  .m-#{$gap} {
+    margin: #{$gap}px
   }
-  .mv-#{$size} {
+  .mv-#{$gap} {
     margin: {
-      top: $gap;
-      bottom: $gap;
+      top: #{$gap}px;
+      bottom: #{$gap}px;
     }
   }
-  .mh-#{$size} {
+  .mh-#{$gap} {
     margin: {
-      left: $gap;
-      right: $gap;
+      left: #{$gap}px;
+      right: #{$gap}px;
     }
   }
-  .mt-#{$size} {
-    margin-top: $gap;
+  .mt-#{$gap} {
+    margin-top: #{$gap}px;
   }
-  .mr-#{$size} {
-    margin-right: $gap
+  .mr-#{$gap} {
+    margin-right: #{$gap}px
   }
-  .mb-#{$size} {
-    margin-bottom: $gap
+  .mb-#{$gap} {
+    margin-bottom: #{$gap}px
   }
-  .ml-#{$size} {
-    margin-left: $gap
+  .ml-#{$gap} {
+    margin-left: #{$gap}px
   }
   // padding
-  .p-#{$size} {
-    padding: $gap
+  .p-#{$gap} {
+    padding: #{$gap}px
   }
-  .pv-#{$size} {
+  .pv-#{$gap} {
     padding: {
-      top: $gap;
-      bottom: $gap;
+      top: #{$gap}px;
+      bottom: #{$gap}px;
     }
   }
-  .ph-#{$size} {
+  .ph-#{$gap} {
     padding: {
-      left: $gap;
-      right: $gap;
+      left: #{$gap}px;
+      right: #{$gap}px;
     }
   }
-  .pt-#{$size} {
-    padding-top: $gap
+  .pt-#{$gap} {
+    padding-top: #{$gap}px
   }
-  .pr-#{$size} {
-    padding-right: $gap
+  .pr-#{$gap} {
+    padding-right: #{$gap}px
   }
-  .pb-#{$size} {
-    padding-bottom: $gap
+  .pb-#{$gap} {
+    padding-bottom: #{$gap}px
   }
-  .pl-#{$size} {
-    padding-left: $gap
+  .pl-#{$gap} {
+    padding-left: #{$gap}px
   }
 }

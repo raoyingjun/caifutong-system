@@ -1,5 +1,5 @@
 <template>
-  <div class="card pv-small ph-middle" :class="marginClass">
+  <div class="card pv-16 ph-24" :class="marginClass">
     <base-label v-if="$slots.label">
       <slot name="label" />
     </base-label>
@@ -19,8 +19,8 @@ const props = defineProps({
     default: () => 'trbl',
   },
   marginSize: {
-    type: String,
-    default: 'middle',
+    type: [String, Number],
+    default: '24',
   },
 });
 // 示例输出类样式: ml-middle、 mt-middle
