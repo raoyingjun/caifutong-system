@@ -54,6 +54,40 @@
       color: #888888
     }
   }
+
+  &-circle {
+    border-radius: 50%;
+  }
+
+  // 溢出内容 ... 省略
+  &-overflow-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  // 转化为块元素并水平居中
+  &-box-horizontal-center {
+    margin: {
+      left: auto;
+      right: auto;
+    }
+    display: block;
+  }
+
+  &-text-center {
+    text-align: center;
+  }
+
+  &-font {
+    &-bold {
+      font-weight: bold;
+    }
+
+    &-bolder {
+      font-weight: bolder;
+    }
+  }
 }
 
 /* ==================== 全局样式 end ===================== */

@@ -73,7 +73,9 @@
     <el-table-column label="发布时间" prop="time" width="153"></el-table-column>
     <el-table-column label="操作" width="90">
       <template #default>
-        <el-link :underline="false" type="primary">查看详情</el-link>
+        <el-link :underline="false" type="primary" @click="$router.push({ name: routeName.HomeViewDetail })"
+          >查看详情</el-link
+        >
       </template>
     </el-table-column>
   </base-table>
@@ -84,6 +86,7 @@ import { ref } from 'vue';
 import BaseSelect from '../../components/base-select.vue';
 import ViewMore from '@/components/view-more.vue';
 import { formatIndex } from '@/utils/formatter';
+import { routeName } from '../../router/enum';
 
 const overflowVisible = ref(false);
 const sendDocumentList = ref(
