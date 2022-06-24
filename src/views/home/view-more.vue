@@ -23,7 +23,7 @@
         <el-button type="primary">查询</el-button>
       </el-row>
     </el-form>
-    <base-table :total="120" class="mt-middle" :data="notices">
+    <base-table :total="120" class="mt-16" :data="notices">
       <el-table-column type="index" width="82" label="序号" :index="formatIndex" />
       <el-table-column label="标题" prop="title"></el-table-column>
       <el-table-column label="发布人" prop="author" width="337"></el-table-column>

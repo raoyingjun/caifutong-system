@@ -23,7 +23,7 @@ const props = defineProps({
     default: '24',
   },
 });
-// 示例输出类样式: ml-middle、 mt-middle
+// 示例输出类样式: ml-8、 mt-16 等
 const marginClass = computed(() => props.margin.split('').map((dir) => `m${dir}-${props.marginSize}`));
 </script>
 <style scoped lang="scss">
