@@ -1,5 +1,5 @@
 <template>
-  <view-more v-model="overflowVisible" class="mt-24">
+  <view-more v-model="overflowVisible" class="mt-24 sub-module-common-style">
     <el-form :inline="true" label-width="105px">
       <el-row>
         <el-col :span="8">
