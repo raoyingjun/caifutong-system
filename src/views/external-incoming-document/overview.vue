@@ -91,18 +91,32 @@
       <el-table-column label="操作" width="210">
         <template #default>
           <el-button type="primary" link>查看</el-button>
-          <el-button type="primary" link>催办</el-button>
+          <el-button type="primary" link @click="chooseUrgencyPeopleDialogVisible = true">催办</el-button>
           <el-button type="primary" link>加处理人</el-button>
           <el-button type="primary" link>回复</el-button>
         </template>
       </el-table-column>
     </base-table>
   </base-card>
+  <base-confirm-dialog
+    v-model="singleUrgencyDialogVisible"
+    msg="是否确认发送催办邮件至irszhu@tencent.com"
+    @cancel="singleUrgencyDialogVisible = false"
+    @confirm="singleUrgencyDialogVisible = false"
+  />
+  <choose-urgency-people-dialog
+    v-model="chooseUrgencyPeopleDialogVisible"
+    msg="是否确认发送催办邮件至irszhu@tencent.com"
+    @cancel="chooseUrgencyPeopleDialogVisible = false"
+    @confirm="choseUrgencyPeople"
+  />
 </template>
 
 <script setup>
 import { formatIndex } from '@/utils/formatter';
 import { ref } from 'vue';
+import ChooseUrgencyPeopleDialog from '@/components/choose-urgency-people-dialog.vue';
+
 const sendDocumentList = ref(
   Array(10)
     .fill(undefined)
@@ -119,6 +133,12 @@ const sendDocumentList = ref(
       replyCount: '0/5',
     })),
 );
+const singleUrgencyDialogVisible = ref(false);
+const chooseUrgencyPeopleDialogVisible = ref(false);
+const choseUrgencyPeople = () => {
+  chooseUrgencyPeopleDialogVisible.value = false;
+  singleUrgencyDialogVisible.value = true;
+};
 </script>
 
 <style scoped lang="scss">
