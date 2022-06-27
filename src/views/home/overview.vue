@@ -86,7 +86,11 @@ const activeTab = computed(() => route.name || routeName.HomeOverViewSendDocumen
     }
   }
   .el-button {
-    padding: 6px 16px;
+    padding: {
+      right: 16px;
+      left: 16px;
+    }
+    height: 28px;
   }
   .el-table {
     .el-table__cell {

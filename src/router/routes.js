@@ -44,6 +44,22 @@ export default [
     ],
   },
   {
+    path: '/externalIncomingDocument', // 外部收文
+    name: routeName.externalIncomingDocument,
+    component: () => import('@/views/external-incoming-document/index.vue'),
+    children: [
+      {
+        path: '',
+        redirect: { name: routeName.externalIncomingDocumentOverView },
+      },
+      {
+        path: 'overview',
+        name: routeName.externalIncomingDocumentOverView,
+        component: () => import('@/views/external-incoming-document/overview.vue'),
+      },
+    ],
+  },
+  {
     path: '/workbench', //  工作台 -> 子页面
     name: 'Index',
     component: () => import('@/views/workbench/index.vue'),

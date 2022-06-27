@@ -6,4 +6,7 @@ export const routeName = {
   HomeOverViewIncomingDocumentList: 'HomeOverViewIncomingDocumentList',
   HomeViewMore: 'HomeViewMore',
   HomeViewDetail: 'HomeViewDetail',
+  // 外部收文
+  externalIncomingDocument: 'externalIncomingDocument',
+  externalIncomingDocumentOverView: 'externalIncomingDocumentOverView',
 };
