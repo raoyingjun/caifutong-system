@@ -24,6 +24,9 @@
 </template>
 <script setup>
 const emit = defineEmits(['confirm', 'cancel']);
+/**
+ * 该组件接受的其他 props 与 el-dialog 的 props 一致
+ */
 defineProps({
   msg: {
     type: String,
