@@ -53,8 +53,12 @@ const cancel = () => emit('cancel');
 <style lang="scss">
 .base-confirm-dialog {
   &.el-dialog {
+    top: 50%;
+    left: 50%;
     width: fit-content;
+    margin: 0;
     border-radius: 8px;
+    transform: translate(-50%, -50%);
   }
   .justify-start {
     align-items: start;
