@@ -7,9 +7,7 @@
           <img src="/src/assets/img/icons/dialog-warning-icon.svg" />
         </el-icon>
         <div>
-          <div class="msg ml-16">
-            {{ msg }}
-          </div>
+          <div class="msg ml-16" v-html="msg" />
           <div v-if="tip" class="tip g-text-secondary ml-16">{{ tip }}</div>
         </div>
       </div>

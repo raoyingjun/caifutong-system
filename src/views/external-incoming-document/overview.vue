@@ -91,20 +91,18 @@
       <el-table-column label="操作" width="210">
         <template #default>
           <el-button type="primary" link>查看</el-button>
-          <el-button type="primary" link @click="chooseUrgencyPeopleDialogVisible = true">催办</el-button>
+          <el-button type="primary" link @click="urge">催办</el-button>
           <el-button type="primary" link>加处理人</el-button>
-          <el-button type="primary" link>回复</el-button>
+          <el-button type="primary" link @click="cancel">撤回</el-button>
         </template>
       </el-table-column>
     </base-table>
   </base-card>
   <base-confirm-dialog
-    v-model="singleUrgencyDialogVisible"
-    msg="将给irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),
-irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu
-(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),推送邮件和MyOA消息提醒，请确认"
-    @cancel="singleUrgencyDialogVisible = false"
-    @confirm="pushMessage"
+    v-model="messageTipDialogVisible"
+    :msg="msg"
+    @cancel="messageTipDialogVisible = false"
+    @confirm="confirmMessageTip"
   />
   <choose-urgency-people-dialog
     v-model="chooseUrgencyPeopleDialogVisible"
@@ -135,16 +133,52 @@ const sendDocumentList = ref(
       replyCount: '0/5',
     })),
 );
-const singleUrgencyDialogVisible = ref(false);
+let currentAction = ''; // urge | cancel
+const messageTipDialogVisible = ref(false);
 const chooseUrgencyPeopleDialogVisible = ref(false);
+const msg = ref('');
+const tip = ref('');
 const choseUrgencyPeople = () => {
   chooseUrgencyPeopleDialogVisible.value = false;
-  singleUrgencyDialogVisible.value = true;
+  messageTipDialogVisible.value = true;
+  msg.value =
+    '将给irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),推送邮件和MyOA消息提醒，请确认';
+  tip.value = '';
 };
 
-const pushMessage = () => {
-  singleUrgencyDialogVisible.value = false;
+const handleUrge = () => {
+  messageTipDialogVisible.value = false;
   ElMessage.success('成功催办');
+};
+
+const urge = () => {
+  currentAction = 'urge';
+  chooseUrgencyPeopleDialogVisible.value = true;
+};
+
+const cancel = () => {
+  currentAction = 'cancel';
+  messageTipDialogVisible.value = true;
+  msg.value = '未传阅人：irzhu(朱俊星)，irzhu(朱俊星)，irzhu(朱俊星)，irzhu(朱俊星)；';
+  msg.value += '<br>未回复人：irzhu(朱俊星)，irzhu(朱俊星)，irzhu(朱俊星)，irzhu(朱俊星) ；';
+  msg.value += '<br>撤回后他们将无法继续传阅或回复，请确认。';
+  tip.value = '注：撤回仅撤回待办，无法撤回提示邮件。';
+};
+
+const handleCancel = () => {
+  messageTipDialogVisible.value = false;
+  ElMessage.success('撤回成功');
+};
+
+const confirmMessageTip = () => {
+  switch (currentAction) {
+    case 'urge':
+      handleUrge();
+      break;
+    case 'cancel':
+      handleCancel();
+      break;
+  }
 };
 </script>
 
