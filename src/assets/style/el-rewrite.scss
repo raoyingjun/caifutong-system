@@ -168,7 +168,9 @@
     display: inline-block;
     width: 134px;
     text-align: right;
-    color: #888888;
+    &:not(.is-bordered-label) {
+      color: #888888;
+    }
   }
   &__content {
     display: inline-block;
