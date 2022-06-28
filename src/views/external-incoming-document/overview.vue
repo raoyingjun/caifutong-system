@@ -90,7 +90,9 @@
       <el-table-column label="回复状态" prop="replyCount"></el-table-column>
       <el-table-column label="操作" width="210">
         <template #default>
-          <el-button type="primary" link>查看</el-button>
+          <el-button type="primary" link @click="$router.push({ name: routeName.externalIncomingDocumentViewDetail })"
+            >查看</el-button
+          >
           <el-button type="primary" link @click="urge">催办</el-button>
           <el-button type="primary" link>加处理人</el-button>
           <el-button type="primary" link @click="cancel">撤回</el-button>
@@ -116,6 +118,7 @@ import { formatIndex } from '@/utils/formatter';
 import { ref } from 'vue';
 import ChooseUrgencyPeopleDialog from '@/components/choose-urgency-people-dialog.vue';
 import { ElMessage } from 'element-plus';
+import { routeName } from '@/router/enum';
 
 const sendDocumentList = ref(
   Array(10)

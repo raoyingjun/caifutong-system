@@ -9,4 +9,5 @@ export const routeName = {
   // 外部收文
   externalIncomingDocument: 'externalIncomingDocument',
   externalIncomingDocumentOverView: 'externalIncomingDocumentOverView',
+  externalIncomingDocumentViewDetail: 'externalIncomingDocumentViewDetail',
 };
