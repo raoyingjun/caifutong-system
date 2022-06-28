@@ -131,28 +131,29 @@
 // 统一 table 样式
 .el-table {
   // element ui table相关样式
-  --el-table-border-color: var(--el-border-color-lighter);
-  --el-table-border: 1px solid var(--el-table-border-color);
-  --el-table-text-color: var(--el-text-color-regular);
   --el-table-header-text-color: #999999;
-  --el-table-row-hover-bg-color: var(--el-fill-color-light);
-  --el-table-current-row-bg-color: var(--el-color-primary-light-9);
   --el-table-header-bg-color: #FAFAFA;
-  --el-table-fixed-box-shadow: var(--el-box-shadow-light);
-  --el-table-bg-color: var(--el-fill-color-blank);
-  --el-table-tr-bg-color: var(--el-fill-color-blank);
-  --el-table-expanded-cell-bg-color: var(--el-fill-color-blank);
-  --el-table-fixed-left-column: inset 10px 0 10px -10px rgba(0, 0, 0, 0.15);
-  --el-table-fixed-right-column: inset -10px 0 10px -10px rgba(0, 0, 0, 0.15);
   // 每个 cell 的内边距
   .el-table__cell {
     padding: 18px 0;
 
   }
+
   // 消除表头的底边 border
   th.el-table__cell.is-leaf {
     border-bottom: 0;
     font-weight: normal;
+  }
+}
+
+// elmessage 相关样式
+.el-message {
+  box-shadow: 0 16px 16px 0 rgba(0,0,0,0.25);
+  top: calc(50% - 24px) !important;
+  &--success {
+    --el-message-bg-color: #E1F5ED;
+    --el-message-border-color: #E1F5ED;
+    --el-message-text-color: #13AC76;
   }
 }
 
