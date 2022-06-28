@@ -13,7 +13,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="8" class="justify-end">
-          <el-form-item label="收文创建人">
+          <el-form-item label="收文创建人" style="margin-right: 0">
             <el-input placeholder="请输入收文创建人" />
           </el-form-item>
         </el-col>
@@ -30,7 +30,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="8" class="justify-end">
-          <el-form-item label="紧急程度">
+          <el-form-item label="紧急程度" style="margin-right: 0">
             <base-select placeholder="全部" />
           </el-form-item>
         </el-col>
@@ -100,13 +100,14 @@
   </base-card>
   <base-confirm-dialog
     v-model="singleUrgencyDialogVisible"
-    msg="是否确认发送催办邮件至irszhu@tencent.com"
+    msg="将给irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),
+irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu
+(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),推送邮件和MyOA消息提醒，请确认"
     @cancel="singleUrgencyDialogVisible = false"
-    @confirm="singleUrgencyDialogVisible = false"
+    @confirm="pushMessage"
   />
   <choose-urgency-people-dialog
     v-model="chooseUrgencyPeopleDialogVisible"
-    msg="是否确认发送催办邮件至irszhu@tencent.com"
     @cancel="chooseUrgencyPeopleDialogVisible = false"
     @confirm="choseUrgencyPeople"
   />
@@ -116,6 +117,7 @@
 import { formatIndex } from '@/utils/formatter';
 import { ref } from 'vue';
 import ChooseUrgencyPeopleDialog from '@/components/choose-urgency-people-dialog.vue';
+import { ElMessage } from 'element-plus';
 
 const sendDocumentList = ref(
   Array(10)
@@ -138,6 +140,11 @@ const chooseUrgencyPeopleDialogVisible = ref(false);
 const choseUrgencyPeople = () => {
   chooseUrgencyPeopleDialogVisible.value = false;
   singleUrgencyDialogVisible.value = true;
+};
+
+const pushMessage = () => {
+  singleUrgencyDialogVisible.value = false;
+  ElMessage.success('成功催办');
 };
 </script>
 
