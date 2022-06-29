@@ -10,4 +10,5 @@ export const routeName = {
   externalIncomingDocument: 'externalIncomingDocument',
   externalIncomingDocumentOverView: 'externalIncomingDocumentOverView',
   externalIncomingDocumentViewDetail: 'externalIncomingDocumentViewDetail',
+  externalIncomingNewIncomingDocument: 'externalIncomingNewIncomingDocument',
 };

@@ -114,7 +114,10 @@
     line-height: 36px;
     height: 36px;
   }
-
+  .el-input-group__prepend {
+    background-color: var(--el-fill-color-blank);
+    padding: 0;
+  }
   margin-bottom: 24px;
 }
 

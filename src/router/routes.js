@@ -62,6 +62,11 @@ export default [
         name: routeName.externalIncomingDocumentViewDetail,
         component: () => import('@/views/external-incoming-document/view-detail.vue'),
       },
+      {
+        path: 'newIncomingDocument',
+        name: routeName.externalIncomingNewIncomingDocument,
+        component: () => import('@/views/external-incoming-document/new-incoming-document.vue'),
+      },
     ],
   },
   {
