@@ -114,10 +114,12 @@
     line-height: 36px;
     height: 36px;
   }
+
   .el-input-group__prepend {
     background-color: var(--el-fill-color-blank);
     padding: 0;
   }
+
   margin-bottom: 24px;
 }
 
@@ -171,10 +173,12 @@
     display: inline-block;
     width: 134px;
     text-align: right;
+
     &:not(.is-bordered-label) {
       color: #888888;
     }
   }
+
   &__content {
     display: inline-block;
     vertical-align: top;
@@ -187,9 +191,19 @@
 .el-tag {
   padding: 7px;
   border: none;
+
   &.el-tag--info {
     color: #AAAAAA;
     background: rgba(238, 237, 237)
+  }
+}
+
+// el popover 相关样式
+
+.el-popper {
+  &.el-select__popper {
+    // 解除 el select 下拉框的选项宽度受限问题
+    max-width: initial !important;
   }
 }
 

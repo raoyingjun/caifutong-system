@@ -4,6 +4,8 @@ import BaseTable from '@/components/base-table.vue';
 import BaseCard from '@/components/base-card.vue';
 import BaseSelect from '@/components/base-select.vue';
 import BaseConfirmDialog from '@/components/base-confirm-dialog.vue';
+import BaseUpload from '@/components/base-upload.vue';
+
 export default {
   install(app) {
     // 批量支持全量icon
@@ -15,5 +17,6 @@ export default {
     app.component('BaseCard', BaseCard);
     app.component('BaseSelect', BaseSelect);
     app.component('BaseConfirmDialog', BaseConfirmDialog);
+    app.component('BaseUpload', BaseUpload);
   },
 };
