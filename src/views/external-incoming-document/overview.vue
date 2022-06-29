@@ -61,31 +61,13 @@
     <base-table :total="120" class="mt-24" :data="sendDocumentList">
       <el-table-column label="序号" type="index" :index="formatIndex" width="63"></el-table-column>
       <el-table-column label="收文编号" prop="id" width="145"></el-table-column>
-      <el-table-column label="文档名称" prop="title">
-        <template #default="{ row }">
-          <el-tooltip :content="row.title" placement="top-start">
-            <div class="g-overflow-ellipsis">{{ row.title }}</div>
-          </el-tooltip>
-        </template>
-      </el-table-column>
-      <el-table-column label="来文单位" prop="from">
-        <template #default="{ row }">
-          <el-tooltip :content="row.from" placement="top-start">
-            <div class="g-overflow-ellipsis">{{ row.from }}</div>
-          </el-tooltip>
-        </template>
-      </el-table-column>
+      <el-table-column label="文档名称" prop="title" show-overflow-tooltip></el-table-column>
+      <el-table-column label="来文单位" prop="from" show-overflow-tooltip></el-table-column>
       <el-table-column label="收文主体" prop="incomingBody"></el-table-column>
       <el-table-column label="收文类型" prop="incomingType"></el-table-column>
       <el-table-column label="紧急程度" prop="urgency"></el-table-column>
       <el-table-column label="收文时间" prop="time" width="153"></el-table-column>
-      <el-table-column label="收文创建人" prop="incomingCreator">
-        <template #default="{ row }">
-          <el-tooltip :content="row.incomingCreator" placement="top-start">
-            <div class="g-overflow-ellipsis">{{ row.incomingCreator }}</div>
-          </el-tooltip>
-        </template>
-      </el-table-column>
+      <el-table-column label="收文创建人" prop="incomingCreator" show-overflow-tooltip></el-table-column>
       <el-table-column label="已读状态" prop="readCount"></el-table-column>
       <el-table-column label="回复状态" prop="replyCount"></el-table-column>
       <el-table-column label="操作" width="210">
