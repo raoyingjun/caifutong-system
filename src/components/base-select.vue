@@ -1,22 +1,18 @@
 <template>
-  <el-select v-model="value" style="width: 100%">
-    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+  <el-select style="width: 100%">
+    <el-option v-for="item in options" :key="item[optionValue]" :label="item[optionLabel]" :value="item[optionValue]" />
   </el-select>
 </template>
 <script setup>
-import { computed } from 'vue';
-
-const props = defineProps({
-  modelValue: [String, Number, Object],
+defineProps({
   options: Array,
-});
-const emit = defineEmits(['update:modelValue']);
-const value = computed({
-  get() {
-    return props.modelValue;
+  optionLabel: {
+    type: String,
+    default: 'label',
   },
-  set(v) {
-    emit('update:modelValue', v);
+  optionValue: {
+    type: String,
+    default: 'value',
   },
 });
 </script>

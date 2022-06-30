@@ -26,12 +26,12 @@
         </el-col>
         <el-col :span="8" class="justify-center">
           <el-form-item label="收文类型">
-            <base-select placeholder="全部" />
+            <base-select placeholder="全部" option-label="key" />
           </el-form-item>
         </el-col>
         <el-col :span="8" class="justify-end">
           <el-form-item label="紧急程度" style="margin-right: 0">
-            <base-select placeholder="全部" />
+            <base-select placeholder="全部" option-label="key" />
           </el-form-item>
         </el-col>
       </el-row>
@@ -97,11 +97,12 @@
 
 <script setup>
 import { formatIndex } from '@/utils/formatter';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import ChooseUrgencyPeopleDialog from '@/components/choose-urgency-people-dialog.vue';
 import { ElMessage } from 'element-plus';
 import { routeName } from '@/router/enum';
-
+// import { usePagination } from '../../composites/common';
+import api from '../../apis/external-incoming-document';
 const sendDocumentList = ref(
   Array(10)
     .fill(undefined)
@@ -123,6 +124,9 @@ const messageTipDialogVisible = ref(false);
 const chooseUrgencyPeopleDialogVisible = ref(false);
 const msg = ref('');
 const tip = ref('');
+// const { currentPage, total, pageSize } = usePagination();
+const urgencyDegrees = ref([]);
+const incomingDocTypes = ref([]);
 const choseUrgencyPeople = () => {
   chooseUrgencyPeopleDialogVisible.value = false;
   messageTipDialogVisible.value = true;
@@ -165,6 +169,24 @@ const confirmMessageTip = () => {
       break;
   }
 };
+
+const getIncomingDocumentList = () => {
+  api.getExternalIncomingDocumentList();
+};
+
+const getExternalIncomingTypes = async () => {
+  incomingDocTypes.value = api.getExternalIncomingTypes();
+};
+
+const getExternalIncomingUrgencyDegrees = () => {
+  urgencyDegrees.value = api.getExternalIncomingUrgencyDegrees();
+};
+
+onMounted(() => {
+  getExternalIncomingTypes();
+  getExternalIncomingUrgencyDegrees();
+  getIncomingDocumentList();
+});
 </script>
 
 <style scoped lang="scss">

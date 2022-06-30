@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
+import { getApiVersion, getApiHost } from '../configs/env';
 
 const defaultConfig = {
   timeout: 8000,
+  baseURL: `${getApiHost()}/${getApiVersion()}`,
 };
 
 const http = axios.create(defaultConfig);
@@ -10,7 +12,7 @@ const http = axios.create(defaultConfig);
 // 响应拦截器
 http.interceptors.response.use(
   (response) => {
-    if (response?.data?.code === 0) {
+    if (response?.data?.code === 200) {
       // code === 0，表示请求正常, 封装原有结构返回
       return response.data;
     }
