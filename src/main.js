@@ -17,3 +17,6 @@ app.use(store);
 app.use(ElementPlus, { locale: zhCn });
 
 app.mount('#app');
+
+store.dispatch('getUrgencyDegrees');
+store.dispatch('getIncomingDocTypes');
