@@ -1,3 +1,4 @@
 import serviceA from './serviceA';
-
-export { serviceA };
+import externalIncomingDocument from './external-incoming-document';
+import common from './common';
+export { serviceA, externalIncomingDocument, common };
