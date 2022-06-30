@@ -70,7 +70,7 @@
         </el-col>
         <el-col :span="8" :offset="8" class="justify-end">
           <el-button>重置</el-button>
-          <el-button type="primary">查询</el-button>
+          <el-button type="primary" @click="getIncomingDocumentList">查询</el-button>
         </el-col>
       </el-row>
       <el-row>
@@ -88,6 +88,7 @@
       class="mt-24"
       :data="sendDocumentList"
       :total="total"
+      @change="getIncomingDocumentList"
     >
       <el-table-column label="序号" type="index" :index="formatIndex" width="63"></el-table-column>
       <el-table-column label="收文编号" prop="SerialNum" width="145"></el-table-column>
@@ -100,7 +101,9 @@
       ></el-table-column>
       <el-table-column
         label="紧急程度"
-        :formatter="({ Type }) => findLabelByValue(Type, $store.state.urgencyDegrees, ['key', 'value'])"
+        :formatter="
+          ({ EmergencyDegree }) => findLabelByValue(EmergencyDegree, $store.state.urgencyDegrees, ['key', 'value'])
+        "
       ></el-table-column>
       <el-table-column label="收文时间" prop="CreateTime" width="153"></el-table-column>
       <el-table-column label="收文创建人" prop="CreatedName" show-overflow-tooltip></el-table-column>
@@ -178,8 +181,6 @@ const form = reactive({
   createId: '',
   type: 0,
   emergencyDegree: 0,
-  startTime: 0,
-  endTime: 0,
   sendDepartmentName: '',
 });
 const choseUrgencyPeople = () => {
@@ -226,12 +227,16 @@ const confirmMessageTip = () => {
 };
 
 const getIncomingDocumentList = async () => {
-  console.log(timeRange.value);
   const {
-    data: { total, result },
-  } = await api.getExternalIncomingDocumentList({ ...form, page: currentPage.value, size: pageSize.value });
+    data: { total: _total, result },
+  } = await api.getExternalIncomingDocumentList({
+    ...form,
+    page: currentPage.value,
+    size: pageSize.value,
+    ...(timeRange.value && { startTime: timeRange.value[0] / 1000, endTime: timeRange.value[1] / 1000 }),
+  });
   sendDocumentList.value = result;
-  total.value = total;
+  total.value = _total;
 };
 
 const findUserList = async (query) => {
