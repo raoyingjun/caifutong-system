@@ -130,7 +130,25 @@
     right: 30px;
   }
   height: 36px;
-  border: 1px solid #ECEFF3;
+  // 默认 border 颜色
+  --el-button-border-color: #ECEFF3;
+  // primary 主色调
+  &.el-button--primary.is-plain,
+  &.el-button--primary.is-text,
+  &.el-button--primary.is-link {
+    --el-button-text-color: #005ad8;
+    --el-button-bg-color: white;
+    --el-button-border-color: #005ad8;
+  }
+
+  // info 主色调
+  &.el-button--info.is-plain,
+  &.el-button--info.is-text,
+  &.el-button--info.is-link {
+    --el-button-text-color: #999;
+    --el-button-bg-color: white;
+    --el-button-border-color: #999;
+  }
 }
 
 // 统一 table 样式
