@@ -1,7 +1,7 @@
 <template>
   <incoming-document-creation-info-form />
   <send-document-info-form />
-  <div class="justify-end operation">
+  <div class="justify-end g-operation g-fixed g-fixed-bottom">
     <el-button class="cancel">取消</el-button>
     <el-button class="preview">预览</el-button>
     <el-button class="save-draft">保存草稿</el-button>
@@ -14,15 +14,7 @@ import IncomingDocumentCreationInfoForm from './components/incoming-document-cre
 import SendDocumentInfoForm from './components/send-document-info-form.vue';
 </script>
 <style scoped lang="scss">
-.operation {
-  position: absolute;
-  bottom: 0;
-  box-sizing: border-box;
-  width: 100%;
-  height: 78px;
-  padding-right: 48px;
-  background: white;
-  box-shadow: 0 0 36px 0 rgba(0, 0, 0, 0.25);
+.g-operation {
   :deep(.el-button) {
     width: 150px;
     height: 45px;
