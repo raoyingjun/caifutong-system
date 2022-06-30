@@ -5,12 +5,12 @@
     </el-table>
 
     <el-pagination
-      v-model:current-page="currentPage"
-      v-model:page-size="pageSize"
+      :current-page="currentPage"
+      :page-size="pageSize"
       class="pagination"
       background
       :total="total"
-      :page-sizes="[10, 20, 50, 100]"
+      :page-size-sizes="[10, 20, 50, 100]"
       layout="total, prev, pager, next, sizes, jumper"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'BaseTable',
@@ -29,13 +29,13 @@ export default defineComponent({
       type: Number,
       default: 0,
     },
-    page: {
-      type: Number,
-      default: 0,
-    },
-    size: {
+    pageSize: {
       type: Number,
       default: 10,
+    },
+    currentPage: {
+      type: Number,
+      default: 1,
     },
     border: {
       type: Boolean,
@@ -43,28 +43,22 @@ export default defineComponent({
     },
   },
 
-  emits: ['change', 'update:size', 'update:page'],
+  emits: ['change', 'update:currentPage', 'update:pageSize'],
 
   setup(props, { emit }) {
-    const pageSize = computed(() => props.size);
-    const currentPage = computed(() => props.page / props.size + 1);
-
     function handleSizeChange(val) {
       // 改变每页数量时重置为第一页
-      emit('update:size', val);
-      emit('update:page', 0);
+      emit('update:pageSize', val);
+      emit('update:currentPage', 1);
       emit('change');
     }
 
     function handleCurrentChange(val) {
-      emit('update:page', (val - 1) * pageSize.value);
-      emit('update:size', pageSize.value);
+      emit('update:currentPage', val);
       emit('change');
     }
 
     return {
-      pageSize,
-      currentPage,
       handleSizeChange,
       handleCurrentChange,
     };
