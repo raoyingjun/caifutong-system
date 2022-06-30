@@ -28,3 +28,10 @@ const dateFormat = (value, formatter) => {
 export default {
   dateFormat,
 };
+
+/**
+ * @example findLabelByValue(1, [{label: 'A', value: 0},{label: 'B', value: 1}], ['label', 'value'])
+ * @param value
+ */
+export const findLabelByValue = (value, options, kvMap = ['label', 'value'] /* [label key, value key] */) =>
+  options.find((option) => option[kvMap[1]] === value)?.[kvMap[0]];
