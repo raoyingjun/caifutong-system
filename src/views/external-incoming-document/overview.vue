@@ -1,37 +1,56 @@
 <template>
   <base-card label="外部收文">
-    <el-form :inline="true" label-width="85px" class="mt-24">
+    <el-form :inline="true" label-width="85px" class="mt-24" :form="form">
       <el-row>
         <el-col :span="8">
           <el-form-item label="文档名称">
-            <el-input placeholder="请输入文档名称" />
+            <el-input v-model="form.docName" placeholder="请输入文档名称" />
           </el-form-item>
         </el-col>
         <el-col :span="8" class="justify-center">
           <el-form-item label="来文单位">
-            <el-input placeholder="请输入来文单位" />
+            <el-input v-model="form.sendDepartmentName" placeholder="请输入来文单位" />
           </el-form-item>
         </el-col>
         <el-col :span="8" class="justify-end">
           <el-form-item label="收文创建人" style="margin-right: 0">
-            <el-input placeholder="请输入收文创建人" />
+            <base-select
+              v-model="form.createId"
+              :remote-method="findUserList"
+              filterable
+              option-label="username"
+              option-value="id"
+              :options="filteredUserList"
+              remote
+              :loading="filterUserLoading"
+            />
           </el-form-item>
         </el-col>
       </el-row>
       <el-row justify="space-between">
         <el-col :span="8">
           <el-form-item label="收文主体">
-            <el-input placeholder="请输入收文主体" />
+            <el-input v-model="form.receiveDepartmentName" placeholder="请输入收文主体" />
           </el-form-item>
         </el-col>
         <el-col :span="8" class="justify-center">
           <el-form-item label="收文类型">
-            <base-select placeholder="全部" option-label="key" />
+            <base-select
+              v-model="form.type"
+              placeholder="全部"
+              option-label="key"
+              :options="$store.state.incomingDocTypes"
+            />
           </el-form-item>
         </el-col>
         <el-col :span="8" class="justify-end">
           <el-form-item label="紧急程度" style="margin-right: 0">
-            <base-select placeholder="全部" option-label="key" />
+            <base-select
+              v-model="form.emergencyDegree"
+              placeholder="全部"
+              option-label="key"
+              :options="$store.state.urgencyDegrees"
+            />
           </el-form-item>
         </el-col>
       </el-row>
@@ -39,11 +58,13 @@
         <el-col :span="8">
           <el-form-item label="发布日期">
             <el-date-picker
+              v-model="timeRange"
               style="width: 432px"
               type="daterange"
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
+              value-format="x"
             />
           </el-form-item>
         </el-col>
@@ -54,27 +75,48 @@
       </el-row>
       <el-row>
         <el-button type="primary" class="ml-16">
-          <el-icon :size="16" class="mr-8"><CirclePlus /></el-icon>新建
+          <el-icon :size="16" class="mr-8">
+            <CirclePlus />
+          </el-icon>
+          新建
         </el-button>
       </el-row>
     </el-form>
-    <base-table :total="120" class="mt-24" :data="sendDocumentList">
+    <base-table
+      v-model:page-size="pageSize"
+      v-model:current-page="currentPage"
+      class="mt-24"
+      :data="sendDocumentList"
+      :total="total"
+    >
       <el-table-column label="序号" type="index" :index="formatIndex" width="63"></el-table-column>
-      <el-table-column label="收文编号" prop="id" width="145"></el-table-column>
-      <el-table-column label="文档名称" prop="title" show-overflow-tooltip></el-table-column>
-      <el-table-column label="来文单位" prop="from" show-overflow-tooltip></el-table-column>
-      <el-table-column label="收文主体" prop="incomingBody"></el-table-column>
-      <el-table-column label="收文类型" prop="incomingType"></el-table-column>
-      <el-table-column label="紧急程度" prop="urgency"></el-table-column>
-      <el-table-column label="收文时间" prop="time" width="153"></el-table-column>
-      <el-table-column label="收文创建人" prop="incomingCreator" show-overflow-tooltip></el-table-column>
-      <el-table-column label="已读状态" prop="readCount"></el-table-column>
-      <el-table-column label="回复状态" prop="replyCount"></el-table-column>
+      <el-table-column label="收文编号" prop="SerialNum" width="145"></el-table-column>
+      <el-table-column label="文档名称" prop="ExternalDocName" show-overflow-tooltip></el-table-column>
+      <el-table-column label="来文单位" prop="SendDepartment" show-overflow-tooltip></el-table-column>
+      <el-table-column label="收文主体" prop="ReceiveDepartment"></el-table-column>
+      <el-table-column
+        label="收文类型"
+        :formatter="({ Type }) => findLabelByValue(Type, $store.state.incomingDocTypes, ['key', 'value'])"
+      ></el-table-column>
+      <el-table-column
+        label="紧急程度"
+        :formatter="({ Type }) => findLabelByValue(Type, $store.state.urgencyDegrees, ['key', 'value'])"
+      ></el-table-column>
+      <el-table-column label="收文时间" prop="CreateTime" width="153"></el-table-column>
+      <el-table-column label="收文创建人" prop="CreatedName" show-overflow-tooltip></el-table-column>
+      <el-table-column
+        label="已读状态"
+        :formatter="(row) => `${row.NowViewCount}/${row.NeedViewCount}`"
+      ></el-table-column>
+      <el-table-column
+        label="回复状态"
+        :formatter="(row) => `${row.NowReplyCount}/${row.NeedReplyCount}`"
+      ></el-table-column>
       <el-table-column label="操作" width="210">
         <template #default>
           <el-button type="primary" link @click="$router.push({ name: routeName.externalIncomingDocumentViewDetail })"
-            >查看</el-button
-          >
+            >查看
+          </el-button>
           <el-button type="primary" link @click="urge">催办</el-button>
           <el-button type="primary" link>加处理人</el-button>
           <el-button type="primary" link @click="cancel">撤回</el-button>
@@ -97,12 +139,14 @@
 
 <script setup>
 import { formatIndex } from '@/utils/formatter';
-import { onMounted, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import ChooseUrgencyPeopleDialog from '@/components/choose-urgency-people-dialog.vue';
 import { ElMessage } from 'element-plus';
 import { routeName } from '@/router/enum';
-// import { usePagination } from '../../composites/common';
-import api from '../../apis/external-incoming-document';
+import { usePagination } from '../../composites/common';
+import { externalIncomingDocument as api } from '@/apis';
+import { findLabelByValue } from '../../utils';
+
 const sendDocumentList = ref(
   Array(10)
     .fill(undefined)
@@ -124,9 +168,20 @@ const messageTipDialogVisible = ref(false);
 const chooseUrgencyPeopleDialogVisible = ref(false);
 const msg = ref('');
 const tip = ref('');
-// const { currentPage, total, pageSize } = usePagination();
-const urgencyDegrees = ref([]);
-const incomingDocTypes = ref([]);
+const { currentPage, pageSize, total } = usePagination();
+const filterUserLoading = ref(false);
+const filteredUserList = ref([]);
+const timeRange = ref([]);
+const form = reactive({
+  docName: '',
+  receiveDepartmentName: '',
+  createId: '',
+  type: 0,
+  emergencyDegree: 0,
+  startTime: 0,
+  endTime: 0,
+  sendDepartmentName: '',
+});
 const choseUrgencyPeople = () => {
   chooseUrgencyPeopleDialogVisible.value = false;
   messageTipDialogVisible.value = true;
@@ -170,22 +225,25 @@ const confirmMessageTip = () => {
   }
 };
 
-const getIncomingDocumentList = () => {
-  api.getExternalIncomingDocumentList();
+const getIncomingDocumentList = async () => {
+  console.log(timeRange.value);
+  const {
+    data: { total, result },
+  } = await api.getExternalIncomingDocumentList({ ...form, page: currentPage.value, size: pageSize.value });
+  sendDocumentList.value = result;
+  total.value = total;
 };
 
-const getExternalIncomingTypes = async () => {
-  incomingDocTypes.value = api.getExternalIncomingTypes();
-};
-
-const getExternalIncomingUrgencyDegrees = () => {
-  urgencyDegrees.value = api.getExternalIncomingUrgencyDegrees();
+const findUserList = async (query) => {
+  filterUserLoading.value = true;
+  const { data } = await api.findUserList(query);
+  filterUserLoading.value = false;
+  filteredUserList.value = data;
 };
 
 onMounted(() => {
-  getExternalIncomingTypes();
-  getExternalIncomingUrgencyDegrees();
   getIncomingDocumentList();
+  findUserList();
 });
 </script>
 
