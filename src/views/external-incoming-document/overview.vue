@@ -75,7 +75,11 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-button type="primary" class="ml-16">
+        <el-button
+          type="primary"
+          class="ml-16"
+          @click="$router.push({ name: routeName.externalIncomingNewIncomingDocument })"
+        >
           <el-icon :size="16" class="mr-8">
             <CirclePlus />
           </el-icon>
@@ -131,6 +135,7 @@
   <base-confirm-dialog
     v-model="messageTipDialogVisible"
     :msg="msg"
+    :tip="tip"
     @cancel="messageTipDialogVisible = false"
     @confirm="confirmMessageTip"
   />
