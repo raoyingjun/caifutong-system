@@ -7,6 +7,7 @@
 <style lang="scss">
 body {
   margin: 0;
+  overflow: hidden;
 }
 .app {
   color: #2c3e50;

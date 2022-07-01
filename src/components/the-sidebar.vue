@@ -144,12 +144,11 @@ export default defineComponent({
 
 .case-aside-close {
   z-index: 2;
-  width: 220px;
+  width: 0;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  transform: translateX(-100%);
-  transition: transform 150ms linear;
+  transition: width 150ms linear;
 }
 
 .case-aside-open {
@@ -157,8 +156,7 @@ export default defineComponent({
   width: 220px;
   // height: calc(100vh - 50px);
   overflow-y: auto;
-  transform: translateX(0);
-  transition: transform 300ms linear;
+  transition: width 300ms linear;
   &::-webkit-scrollbar-thumb {
     background-color: transparent;
   }
