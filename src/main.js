@@ -20,3 +20,5 @@ app.mount('#app');
 
 store.dispatch('getUrgencyDegrees');
 store.dispatch('getIncomingDocTypes');
+store.dispatch('getIncomingDocSecretLevels');
+store.dispatch('getIncomingDocTags');

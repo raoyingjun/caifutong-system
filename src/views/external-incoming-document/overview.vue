@@ -40,7 +40,7 @@
               v-model="form.type"
               placeholder="全部"
               option-label="key"
-              :options="$store.state.incomingDocTypes"
+              :options="$store.getters.incomingDocTypesIncludeAll"
             />
           </el-form-item>
         </el-col>
@@ -50,7 +50,7 @@
               v-model="form.emergencyDegree"
               placeholder="全部"
               option-label="key"
-              :options="$store.state.urgencyDegrees"
+              :options="$store.getters.urgencyDegreesIncludeAll"
             />
           </el-form-item>
         </el-col>

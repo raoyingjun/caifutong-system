@@ -17,6 +17,7 @@ module.exports = {
       { blankLine: 'always', prev: 'function', next: '*' },
     ],
     'vue/multi-word-component-names': 'off',
+    'vue/no-mutating-props': 'off',
   },
   globals: {
     defineProps: 'readonly',

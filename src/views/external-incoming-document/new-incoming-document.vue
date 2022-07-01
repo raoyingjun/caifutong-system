@@ -1,6 +1,6 @@
 <template>
-  <incoming-document-creation-info-form />
-  <send-document-info-form />
+  <incoming-document-creation-info-form :form="form" />
+  <send-document-info-form :form="form" />
   <fixed-operation>
     <el-button type="info" plain>取消</el-button>
     <el-button plain type="primary">预览</el-button>
@@ -12,6 +12,20 @@
 <script setup>
 import IncomingDocumentCreationInfoForm from './components/incoming-document-creation-info-form.vue';
 import SendDocumentInfoForm from './components/send-document-info-form.vue';
+import { reactive } from 'vue';
+const form = reactive({
+  receiveDepartment: '',
+  sendDepartment: '',
+  externalDocName: '',
+  type: '',
+  secretDegree: '',
+  tags: '',
+  emergencyDegree: '',
+  externalSerialNum: '',
+  fileUrls: 'https://baidu.com',
+  MainViewUsers: '1;2;3;4',
+  receiveContent: '(￣▽￣)',
+});
 </script>
 <style lang="scss" scoped>
 .el-button {

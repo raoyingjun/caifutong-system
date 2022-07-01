@@ -10,4 +10,15 @@ export default {
   getExternalIncomingUrgencyDegrees: () => {
     return http.get('/receive/emergency');
   },
+  // 获取收文保密级别
+  getExternalIncomingSecretLevels: () => {
+    return http.get('/receive/secrets');
+  },
+  /**
+   *   获取收文标签
+   *   @param {String} keywords 联想搜索关键字
+   */
+  getExternalIncomingTags: (keywords = '') => {
+    return http.post('/tag/list', { keywords });
+  },
 };

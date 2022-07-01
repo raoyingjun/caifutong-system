@@ -10,4 +10,12 @@ export default {
   findUserList: (keywords) => {
     return http.post('/user/common-infos', { keywords });
   },
+  /**
+   * 获取公司列表
+   * @param {Number} type 0 -> 总公司， 1 -> 分公司
+   * @returns {*}
+   */
+  getCompanyList: (type) => {
+    return http.get(`/company/list?type=${type}`);
+  },
 };
