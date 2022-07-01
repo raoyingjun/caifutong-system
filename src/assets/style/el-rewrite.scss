@@ -225,4 +225,11 @@
   }
 }
 
+// el-textarea 相关样式
+.el-textarea {
+  &__inner {
+    height: 100%;
+  }
+}
+
 /* =============== element-ui样式重置 end ================== */
