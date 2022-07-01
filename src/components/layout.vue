@@ -49,12 +49,12 @@ export default defineComponent({
   .content-container {
     flex-direction: row;
     .main-area {
-      height: calc(100vh - 75px);
+      height: calc(100vh - 65px);
       overflow: auto;
       background-color: #f5f7fa;
       transition: padding 0.3s;
       &.footer-height {
-        height: calc(100vh - 75px - 78px);
+        height: calc(100vh - 65px - 78px);
       }
     }
   }
