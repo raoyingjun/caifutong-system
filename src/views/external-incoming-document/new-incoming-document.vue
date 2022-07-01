@@ -1,7 +1,7 @@
 <template>
   <incoming-document-creation-info-form />
   <send-document-info-form />
-  <fixed-operation class="bokopfkghopeth">
+  <fixed-operation>
     <el-button type="info" plain>取消</el-button>
     <el-button plain type="primary">预览</el-button>
     <el-button class="save-draft">保存草稿</el-button>
@@ -14,17 +14,13 @@ import IncomingDocumentCreationInfoForm from './components/incoming-document-cre
 import SendDocumentInfoForm from './components/send-document-info-form.vue';
 </script>
 <style lang="scss" scoped>
-.bokopfkghopeth {
-  .el-button {
-    width: 150px !important;
-    height: 45px;
-    margin-left: 32px;
-  }
-  .save-draft {
-    color: white;
-    background: rgba(39, 189, 255, 1);
-  }
+.el-button {
+  width: 150px;
+  height: 45px;
+  margin-left: 32px;
+}
+.save-draft {
+  color: white;
+  background: rgba(39, 189, 255, 1);
 }
 </style>
-
-<style></style>
