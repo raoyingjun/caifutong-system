@@ -21,4 +21,8 @@ export default {
   getExternalIncomingTags: (keywords = '') => {
     return http.post('/tag/list', { keywords });
   },
+  // 搜索指定用户列表
+  findUserList: (keywords) => {
+    return http.post('/user/common-infos', { keywords });
+  },
 };

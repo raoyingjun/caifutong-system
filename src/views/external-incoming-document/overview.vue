@@ -14,17 +14,7 @@
         </el-col>
         <el-col :span="8" class="justify-end">
           <el-form-item label="收文创建人" style="margin-right: 0">
-            <base-select
-              v-model="form.createId"
-              clearable
-              :remote-method="findUserList"
-              filterable
-              option-label="username"
-              option-value="id"
-              :options="filteredUserList"
-              remote
-              :loading="filterUserLoading"
-            />
+            <user-select v-model="form.createId" />
           </el-form-item>
         </el-col>
       </el-row>
@@ -178,8 +168,6 @@ const chooseUrgencyPeopleDialogVisible = ref(false);
 const msg = ref('');
 const tip = ref('');
 const { currentPage, pageSize, total } = usePagination();
-const filterUserLoading = ref(false);
-const filteredUserList = ref([{ username: '请选择', id: 0 }]);
 const timeRange = ref([]);
 const form = reactive({
   docName: '',
@@ -245,16 +233,8 @@ const getIncomingDocumentList = async () => {
   total.value = _total;
 };
 
-const findUserList = async (query) => {
-  filterUserLoading.value = true;
-  const { data } = await api.findUserList(query);
-  filterUserLoading.value = false;
-  filteredUserList.value.push.apply(filteredUserList.value, data);
-};
-
 onMounted(() => {
   getIncomingDocumentList();
-  findUserList();
 });
 </script>
 
