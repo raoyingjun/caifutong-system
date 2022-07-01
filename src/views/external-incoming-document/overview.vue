@@ -16,6 +16,7 @@
           <el-form-item label="收文创建人" style="margin-right: 0">
             <base-select
               v-model="form.createId"
+              clearable
               :remote-method="findUserList"
               filterable
               option-label="username"
@@ -173,12 +174,12 @@ const msg = ref('');
 const tip = ref('');
 const { currentPage, pageSize, total } = usePagination();
 const filterUserLoading = ref(false);
-const filteredUserList = ref([]);
+const filteredUserList = ref([{ username: '请选择', id: 0 }]);
 const timeRange = ref([]);
 const form = reactive({
   docName: '',
   receiveDepartmentName: '',
-  createId: '',
+  createId: 0,
   type: 0,
   emergencyDegree: 0,
   sendDepartmentName: '',
@@ -243,7 +244,7 @@ const findUserList = async (query) => {
   filterUserLoading.value = true;
   const { data } = await api.findUserList(query);
   filterUserLoading.value = false;
-  filteredUserList.value = data;
+  filteredUserList.value.push.apply(filteredUserList.value, data);
 };
 
 onMounted(() => {

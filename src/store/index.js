@@ -7,8 +7,8 @@ export default createStore({
   state: {
     menus,
     count: 0,
-    incomingDocTypes: [],
-    urgencyDegrees: [],
+    incomingDocTypes: [{ key: '全部', value: 0 }],
+    urgencyDegrees: [{ key: '全部', value: 0 }],
   },
 
   getters: {
@@ -22,10 +22,10 @@ export default createStore({
       state.count += 1;
     },
     setUrgencyDegrees(state, urgencyDegrees) {
-      state.urgencyDegrees = [{ key: '全部', value: 0 }].concat(urgencyDegrees);
+      state.urgencyDegrees.push.apply(state.urgencyDegrees, urgencyDegrees);
     },
     setIncomingDocTypes(state, incomingDocTypes) {
-      state.incomingDocTypes = [{ key: '全部', value: 0 }].concat(incomingDocTypes);
+      state.incomingDocTypes.push.apply(state.incomingDocTypes, incomingDocTypes);
     },
   },
 
