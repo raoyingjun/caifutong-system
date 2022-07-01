@@ -9,8 +9,8 @@ export default createStore({
     count: 0,
     incomingDocTypes: [{ key: '全部', value: 0 }],
     urgencyDegrees: [{ key: '全部', value: 0 }],
+    layoutFooterVisible: false,
   },
-
   getters: {
     doubleCount(state) {
       return state.count * 2;
@@ -18,6 +18,9 @@ export default createStore({
   },
 
   mutations: {
+    setLayoutFooterVisible(state, visible) {
+      state.layoutFooterVisible = visible;
+    },
     increment(state) {
       state.count += 1;
     },
