@@ -4,7 +4,6 @@
     <el-container class="content-container">
       <the-sidebar :is-menu-collapse="isMenuCollapse"></the-sidebar>
       <el-main :class="[mainClas, isMenuCollapse ? 'menu-collapse' : 'menu-uncollapse']">
-        {{ mainClas }}
         <the-breadcrumb />
         <router-view></router-view>
       </el-main>
