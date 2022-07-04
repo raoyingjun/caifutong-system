@@ -3,8 +3,8 @@
     clearable
     :remote-method="findUserList"
     filterable
-    option-label="username"
-    option-value="id"
+    :option-label="optionLabel"
+    :option-value="optionValue"
     :options="filteredUserList"
     remote
     :loading="filterUserLoading"
@@ -13,7 +13,16 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { common as api } from '@/apis';
-
+defineProps({
+  optionLabel: {
+    type: String,
+    default: 'username',
+  },
+  optionValue: {
+    type: String,
+    default: 'id',
+  },
+});
 const filterUserLoading = ref(false);
 const filteredUserList = ref([{ username: '请选择', id: 0 }]);
 const findUserList = async (query) => {

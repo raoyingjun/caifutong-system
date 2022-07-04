@@ -1,6 +1,11 @@
 <template>
   <el-select style="width: 100%">
-    <el-option v-for="item in options" :key="item[optionValue]" :label="item[optionLabel]" :value="item[optionValue]" />
+    <el-option
+      v-for="item in options"
+      :key="optionValue === 'self' ? item : item[optionValue]"
+      :label="item[optionLabel]"
+      :value="optionValue === 'self' ? item : item[optionValue]"
+    />
   </el-select>
 </template>
 <script setup>

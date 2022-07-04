@@ -28,7 +28,7 @@
               @change="rootCompanyChange"
             />
             <base-select
-              v-model="form.receiveDepartment"
+              v-model="form.receiveCompanyId"
               :options="subCompanyList"
               style="width: 340px"
               option-label="key"
@@ -46,14 +46,12 @@
 </template>
 <script setup>
 import { externalIncomingDocument as api } from '@/apis';
-import { ref, defineProps } from 'vue';
-const props = defineProps({
-  form: Object,
-});
+import { ref, inject } from 'vue';
+const form = inject('form');
 const selectedRootCompany = ref('');
 const subCompanyList = ref([]);
 const rootCompanyChange = async (type) => {
-  props.form.receiveDepartment = '';
+  form.receiveDepartment = '';
   const { data } = await api.getCompanyList(type);
   subCompanyList.value = data;
 };

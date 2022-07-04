@@ -24,7 +24,7 @@
         </el-form-item>
       </el-row>
     </el-form>
-    <need-reply-people-form form="replayList" type="edit" />
+    <need-reply-people-form :form="form" />
   </base-card>
 </template>
 <script setup>

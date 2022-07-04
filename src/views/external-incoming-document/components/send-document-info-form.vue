@@ -50,16 +50,19 @@
       </el-row>
       <el-row>
         <el-form-item label="附件上传">
-          <base-upload />
+          <base-upload :action="getFileUploadUrl()" :on-success="handleUploadSuccess" name="files" />
         </el-form-item>
       </el-row>
     </el-form>
   </base-card>
 </template>
 <script setup>
-defineProps({
-  form: Object,
-});
+import { getFileUploadUrl } from '@/configs/env';
+import { inject } from 'vue';
+const form = inject('form');
+const handleUploadSuccess = ({ data: uploadedFilesPath }) => {
+  form.fileUrls = uploadedFilesPath;
+};
 </script>
 <style scoped lang="scss">
 :deep(.el-form-item) {

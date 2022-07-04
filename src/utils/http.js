@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
-import { getApiVersion, getApiHost } from '../configs/env';
+import { getApiBaseUrl } from '../configs/env';
 
 const defaultConfig = {
   timeout: 8000,
-  baseURL: `${getApiHost()}/${getApiVersion()}`,
+  baseURL: getApiBaseUrl(),
 };
 
 const http = axios.create(defaultConfig);

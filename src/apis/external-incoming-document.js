@@ -14,4 +14,7 @@ export default {
   getCompanyList: (type) => {
     return http.get(`/company/list?type=${type}`);
   },
+  newExternalIncomingDocument(data) {
+    return http.post('/receive/doc', data);
+  },
 };

@@ -3,8 +3,10 @@
     <el-icon class="mt-36" color="#1573ff" :size="36">
       <upload-filled />
     </el-icon>
-
     <div class="el-upload__text">将文件拖入此处，或<em>点击上传</em></div>
+    <template #tip>
+      <div class="el-upload__tip">只能上传pdf,doc,docx,ppt,pptx,jpg,png文件，且不超过100M，文件数量不超过20个</div>
+    </template>
   </el-upload>
 </template>
 <style scoped lang="scss">
