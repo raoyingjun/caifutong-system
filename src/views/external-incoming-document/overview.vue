@@ -111,8 +111,11 @@
         :formatter="(row) => `${row.NowReplyCount}/${row.NeedReplyCount}`"
       ></el-table-column>
       <el-table-column label="操作" width="210">
-        <template #default>
-          <el-button type="primary" link @click="$router.push({ name: routeName.externalIncomingDocumentViewDetail })"
+        <template #default="{ row }">
+          <el-button
+            type="primary"
+            link
+            @click="$router.push({ name: routeName.externalIncomingDocumentViewDetail, params: { id: row.ID } })"
             >查看
           </el-button>
           <el-button type="primary" link @click="urge">催办</el-button>

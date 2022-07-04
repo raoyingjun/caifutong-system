@@ -17,4 +17,7 @@ export default {
   newExternalIncomingDocument(data) {
     return http.post('/receive/doc', data);
   },
+  getExternalIncomingDocumentDetail(id) {
+    return http.get(`/receive/detail?id=${id}`);
+  },
 };

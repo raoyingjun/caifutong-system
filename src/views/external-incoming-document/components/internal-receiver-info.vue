@@ -5,36 +5,26 @@
     </div>
     <el-descriptions :column="1">
       <el-descriptions-item label="传阅人（主送）">
-        <span v-for="(people, index) in circulatedMainSendPeople" :key="index">
-          {{ people }}
-          <el-link type="primary" class="ml-8 mr-16" :underline="false">催办</el-link>
+        <span v-for="user in data.mainViewUsers" :key="user.userID">
+          {{ user.username }}
+          <el-link type="primary" class="ml-8 mr-16" :underline="false" :disabled="user.status">催办</el-link>
         </span>
       </el-descriptions-item>
       <el-descriptions-item label="传阅人（抄送）">
-        <span v-for="(people, index) in circulatedCopySendPeople" :key="index">
-          {{ people }}
-          <el-link type="primary" class="mh-16" :underline="false">催办</el-link>
+        <span v-for="user in data.secondaryViewUsers" :key="user.userID">
+          {{ user.username }}
+          <el-link type="primary" class="mh-16" :underline="false" :disabled="user.status">催办</el-link>
         </span>
       </el-descriptions-item>
       <el-descriptions-item label="收文摘要" style="line-height: 19.6px">
-        这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要这里是收文摘要
+        {{ data.receiveBrief }}
       </el-descriptions-item>
     </el-descriptions>
     <need-reply-people />
   </base-card>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { inject } from 'vue';
 import NeedReplyPeople from './need-reply-people.vue';
-
-const circulatedMainSendPeople = ref(
-  Array(6)
-    .fill()
-    .map(() => 'vivianxu(许微微)'),
-);
-const circulatedCopySendPeople = ref(
-  Array(3)
-    .fill()
-    .map(() => 'cocoliu(刘可可)'),
-);
+const data = inject('data');
 </script>

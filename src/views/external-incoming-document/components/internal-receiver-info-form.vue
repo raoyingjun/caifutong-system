@@ -14,7 +14,7 @@
       <el-row>
         <el-form-item label="收文摘要">
           <el-input
-            v-model="form.receiveContent"
+            v-model="form.receiveBrief"
             placeholder="请输入收文摘要"
             maxlength="10000"
             show-word-limit
@@ -29,10 +29,8 @@
 </template>
 <script setup>
 import NeedReplyPeopleForm from './need-reply-people-form.vue';
-
-defineProps({
-  form: Object,
-});
+import { inject } from 'vue';
+const form = inject('form');
 </script>
 <style scoped lang="scss">
 :deep(.el-form-item) {
