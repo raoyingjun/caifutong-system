@@ -149,22 +149,7 @@ import { usePagination } from '../../composites/common';
 import { externalIncomingDocument as api } from '@/apis';
 import { findLabelByValue } from '../../utils';
 
-const sendDocumentList = ref(
-  Array(10)
-    .fill(undefined)
-    .map(() => ({
-      id: '202202050799999',
-      title: '这里是文档名称',
-      from: '那这里是来文单位',
-      incomingCreator: 'irzhu(朱俊星)',
-      incomingBody: '总公司',
-      incomingType: '通知类',
-      urgency: '一般',
-      time: '2021/11/11 10:24:14',
-      readCount: '3/5',
-      replyCount: '0/5',
-    })),
-);
+const sendDocumentList = ref([]);
 let currentAction = ''; // urge | cancel
 const messageTipDialogVisible = ref(false);
 const chooseUrgencyPeopleDialogVisible = ref(false);
