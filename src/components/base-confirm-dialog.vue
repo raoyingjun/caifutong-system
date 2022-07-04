@@ -15,7 +15,7 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="cancel">{{ cancelText }}</el-button>
-        <el-button type="primary" @click="confirm">{{ confirmText }}</el-button>
+        <el-button type="primary" :loading="confirmLoading" @click="confirm">{{ confirmText }}</el-button>
       </span>
     </template>
   </el-dialog>
@@ -44,6 +44,7 @@ defineProps({
     default: '提示',
   },
   customClass: String,
+  confirmLoading: Boolean,
 });
 const confirm = () => emit('confirm');
 const cancel = () => emit('cancel');

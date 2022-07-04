@@ -20,4 +20,7 @@ export default {
   getExternalIncomingDocumentDetail(id) {
     return http.get(`/receive/detail?id=${id}`);
   },
+  cancelExternalIncomingDocumentTodo(id) {
+    return http.delete(`/receive/withdraw?id=${id}`);
+  },
 };

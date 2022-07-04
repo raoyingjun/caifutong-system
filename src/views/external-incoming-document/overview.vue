@@ -111,7 +111,7 @@
         :formatter="(row) => `${row.NowReplyCount}/${row.NeedReplyCount}`"
       ></el-table-column>
       <el-table-column label="操作" width="210">
-        <template #default="{ row }">
+        <template #default="{ row, $index }">
           <el-button
             type="primary"
             link
@@ -120,7 +120,7 @@
           </el-button>
           <el-button type="primary" link @click="urge">催办</el-button>
           <el-button type="primary" link>加处理人</el-button>
-          <el-button type="primary" link @click="cancel">撤回</el-button>
+          <el-button type="primary" link @click="cancel($index)">撤回</el-button>
         </template>
       </el-table-column>
     </base-table>
@@ -129,6 +129,7 @@
     v-model="messageTipDialogVisible"
     :msg="msg"
     :tip="tip"
+    :confirm-loading="confirmLoading"
     @cancel="messageTipDialogVisible = false"
     @confirm="confirmMessageTip"
   />
@@ -141,20 +142,19 @@
 
 <script setup>
 import { formatIndex } from '@/utils/formatter';
-import { onMounted, reactive, ref } from 'vue';
+import { computed, nextTick, onMounted, reactive, ref } from 'vue';
 import ChooseUrgencyPeopleDialog from '@/components/choose-urgency-people-dialog.vue';
 import { ElMessage } from 'element-plus';
 import { routeName } from '@/router/enum';
 import { usePagination } from '../../composites/common';
 import { externalIncomingDocument as api } from '@/apis';
 import { findLabelByValue } from '../../utils';
+import { useUnReplierUsers, useUnViewerUsers } from '../../composites/user';
 
 const sendDocumentList = ref([]);
-let currentAction = ''; // urge | cancel
+const currentAction = ref(''); // urge | cancel
 const messageTipDialogVisible = ref(false);
 const chooseUrgencyPeopleDialogVisible = ref(false);
-const msg = ref('');
-const tip = ref('');
 const { currentPage, pageSize, total } = usePagination();
 const timeRange = ref([]);
 const form = reactive({
@@ -165,12 +165,11 @@ const form = reactive({
   emergencyDegree: 0,
   sendDepartmentName: '',
 });
+const currentIndex = ref(0);
+const confirmLoading = ref(false);
 const choseUrgencyPeople = () => {
   chooseUrgencyPeopleDialogVisible.value = false;
   messageTipDialogVisible.value = true;
-  msg.value =
-    '将给irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),推送邮件和MyOA消息提醒，请确认';
-  tip.value = '';
 };
 
 const handleUrge = () => {
@@ -179,31 +178,56 @@ const handleUrge = () => {
 };
 
 const urge = () => {
-  currentAction = 'urge';
+  currentAction.value = 'urge';
   chooseUrgencyPeopleDialogVisible.value = true;
 };
 
-const cancel = () => {
-  currentAction = 'cancel';
+const tip = computed(() => (currentAction.value === 'urge' ? '' : '注：撤回仅撤回待办，无法撤回提示邮件'));
+const msg = computed(() => {
+  let msg = '';
+  if (sendDocumentList.value.length === 0) {
+    return msg;
+  }
+  if (currentAction.value === 'urge') {
+    msg =
+      '将给irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),irzhu(朱俊星),推送邮件和MyOA消息提醒，请确认';
+  } else if (currentAction.value === 'cancel') {
+    const unReplierUsers = useUnReplierUsers(sendDocumentList.value[currentIndex.value].UserInfos);
+    const unViewerUsers = useUnViewerUsers(sendDocumentList.value[currentIndex.value].UserInfos);
+    console.log(currentIndex.value, sendDocumentList.value[currentIndex.value], unReplierUsers);
+    const unReplierUsersString = unReplierUsers.value.map((user) => user.username).join('，');
+    const unViewerUsersString = unViewerUsers.value.map((user) => user.username).join('，');
+    msg = `未传阅人：${unViewerUsersString}`;
+    msg += `<br>未回复人：${unReplierUsersString} ；`;
+    msg += '<br>撤回后他们将无法继续传阅或回复，请确认。';
+  } else {
+    msg = '';
+  }
+
+  return msg;
+});
+const cancel = (index) => {
+  currentIndex.value = index;
+  currentAction.value = 'cancel';
   messageTipDialogVisible.value = true;
-  msg.value = '未传阅人：irzhu(朱俊星)，irzhu(朱俊星)，irzhu(朱俊星)，irzhu(朱俊星)；';
-  msg.value += '<br>未回复人：irzhu(朱俊星)，irzhu(朱俊星)，irzhu(朱俊星)，irzhu(朱俊星) ；';
-  msg.value += '<br>撤回后他们将无法继续传阅或回复，请确认。';
-  tip.value = '注：撤回仅撤回待办，无法撤回提示邮件。';
 };
 
-const handleCancel = () => {
+const handleCancel = async (id) => {
+  confirmLoading.value = true;
+  await api.cancelExternalIncomingDocumentTodo(id);
   messageTipDialogVisible.value = false;
+  confirmLoading.value = false;
+  getIncomingDocumentList();
   ElMessage.success('撤回成功');
 };
 
 const confirmMessageTip = () => {
-  switch (currentAction) {
+  switch (currentAction.value) {
     case 'urge':
       handleUrge();
       break;
     case 'cancel':
-      handleCancel();
+      handleCancel(sendDocumentList.value[currentIndex.value].ID);
       break;
   }
 };
@@ -217,7 +241,10 @@ const getIncomingDocumentList = async () => {
     size: pageSize.value,
     ...(timeRange.value && { startTime: timeRange.value[0] / 1000, endTime: timeRange.value[1] / 1000 }),
   });
-  sendDocumentList.value = result;
+  sendDocumentList.value = [];
+  nextTick(() => {
+    sendDocumentList.value = result || [];
+  });
   total.value = _total;
 };
 
