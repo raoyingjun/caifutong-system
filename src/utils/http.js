@@ -18,7 +18,7 @@ http.interceptors.response.use(
     }
 
     // code !== 0，表示请求有错误,获取 msg，返回reject
-    const errMsg = response?.data?.message;
+    const errMsg = response?.data?.msg;
     if (errMsg) {
       ElMessage({
         message: errMsg,
@@ -31,9 +31,17 @@ http.interceptors.response.use(
   },
 
   (error) => {
+    let errMsg = '';
     if (error?.response?.status === 401) {
+      errMsg = '无权限访问';
+    } else {
+      errMsg = error.message;
+    }
+
+    console.log('err', error);
+    if (errMsg) {
       ElMessage({
-        message: '无权限访问',
+        message: errMsg,
         type: 'error',
         duration: 1500,
       });
