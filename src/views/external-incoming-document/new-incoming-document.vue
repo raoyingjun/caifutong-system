@@ -51,10 +51,13 @@ const ui2api = () => {
 };
 
 const submit = async () => {
-  submitLoading.value = true;
-  await api.newExternalIncomingDocument(ui2api());
-  submitLoading.value = false;
-  ElMessage.success('创建收文成功');
+  try {
+    submitLoading.value = true;
+    await api.newExternalIncomingDocument(ui2api());
+    ElMessage.success('创建收文成功');
+  } finally {
+    submitLoading.value = false;
+  }
 };
 </script>
 <style lang="scss" scoped>
