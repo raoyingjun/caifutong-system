@@ -24,7 +24,7 @@ defineProps({
   },
 });
 const filterUserLoading = ref(false);
-const filteredUserList = ref([{ username: '请选择', id: 0 }]);
+const filteredUserList = ref();
 const findUserList = async (query) => {
   filterUserLoading.value = true;
   const { data } = await api.findUserList(query);
