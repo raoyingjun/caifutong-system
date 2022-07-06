@@ -160,7 +160,7 @@ const timeRange = ref([]);
 const form = reactive({
   docName: '',
   receiveDepartmentName: '',
-  createId: 0,
+  createId: '',
   type: 0,
   emergencyDegree: 0,
   sendDepartmentName: '',
@@ -239,6 +239,7 @@ const getIncomingDocumentList = async () => {
     ...form,
     page: currentPage.value,
     size: pageSize.value,
+    createId: form.createId || 0,
     ...(timeRange.value && { startTime: timeRange.value[0] / 1000, endTime: timeRange.value[1] / 1000 }),
   });
   sendDocumentList.value = [];
