@@ -11,4 +11,9 @@ export const routeName = {
   externalIncomingDocumentOverView: 'externalIncomingDocumentOverView',
   externalIncomingDocumentViewDetail: 'externalIncomingDocumentViewDetail',
   externalIncomingNewIncomingDocument: 'externalIncomingNewIncomingDocument',
+  // 对外发文
+  sendDocument: 'sendDocument',
+  sendDocumentOverView: 'sendDocumentOverView',
+  sendDocumentViewDetail: 'sendDocumentViewDetail',
+  sendDocumentNewSendDocument: 'sendDocumentNewSendDocument',
 };

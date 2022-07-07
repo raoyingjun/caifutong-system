@@ -70,6 +70,32 @@ export default [
     ],
   },
   {
+    path: '/sendDocument', // 外部收文
+    name: routeName.sendDocument,
+    component: () => import('@/views/send-document/index.vue'),
+    children: [
+      {
+        path: '',
+        redirect: { name: routeName.sendDocumentOverView },
+      },
+      {
+        path: 'overview',
+        name: routeName.sendDocumentOverView,
+        component: () => import('@/views/send-document/overview.vue'),
+      },
+      // {
+      //   path: ':id/viewDetail',
+      //   name: routeName.externalIncomingDocumentViewDetail,
+      //   component: () => import('@/views/send-incoming-document/view-detail.vue'),
+      // },
+      // {
+      //   path: 'newIncomingDocument',
+      //   name: routeName.externalIncomingNewIncomingDocument,
+      //   component: () => import('@/views/send-incoming-document/new-incoming-document.vue'),
+      // },
+    ],
+  },
+  {
     path: '/workbench', //  工作台 -> 子页面
     name: 'Index',
     component: () => import('@/views/workbench/index.vue'),
