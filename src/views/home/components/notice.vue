@@ -28,25 +28,29 @@
           {{ notice.title }}
           <el-tag v-if="index < 3" class="tag ml-16">置顶</el-tag>
         </el-col>
-        <el-col :span="5" class="g-text-secondary"> {{ notice.author }}</el-col>
-        <el-col :span="4" class="g-text-secondary justify-end"> {{ notice.time }}</el-col>
+        <el-col :span="5" class="g-text-secondary"> {{ notice.createdName }}</el-col>
+        <el-col :span="4" class="g-text-secondary justify-end"> {{ notice.createTime }}</el-col>
       </el-row>
     </div>
   </base-card>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { routeName } from '@/router/enum';
+import { notice as api } from '@/apis';
 
-const notices = ref(
-  Array(5)
-    .fill(undefined)
-    .map(() => ({
-      title: '这里是公告标题这里是公告标题这里是公告标题',
-      author: 'irzhu（朱俊星)',
-      time: '2021/11/11 16:05:36',
-    })),
-);
+const notices = ref([]);
+const reqData = { page: 1, size: 5 };
+const getNoticeList = async () => {
+  const {
+    data: { result },
+  } = await api.getNoticeList(reqData);
+  notices.value = result || [];
+};
+
+onMounted(() => {
+  getNoticeList();
+});
 </script>
 <style scoped lang="scss">
 .img {
