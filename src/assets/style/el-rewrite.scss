@@ -232,4 +232,25 @@
   }
 }
 
+
+// el switch 样式
+
+.el-switch {
+  .el-switch__core {
+    width: 48px;
+
+    & .el-switch__action {
+      width: 24px;
+      border-radius: 8px;
+    }
+  }
+
+  &.is-checked {
+    .el-switch__core .el-switch__action {
+      margin-left: calc(-1px - 24px) !important;
+    }
+
+  }
+}
+
 /* =============== element-ui样式重置 end ================== */
