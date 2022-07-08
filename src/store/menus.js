@@ -41,4 +41,11 @@ export default [
     icon: '',
     limit: '',
   },
+  {
+    id: '5',
+    name: '公告管理',
+    path: '/notice',
+    icon: '',
+    limit: '',
+  },
 ];

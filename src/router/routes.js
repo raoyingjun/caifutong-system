@@ -96,6 +96,32 @@ export default [
     ],
   },
   {
+    path: '/notice', // 外部收文
+    name: routeName.notice,
+    component: () => import('@/views/notice/index.vue'),
+    children: [
+      {
+        path: '',
+        redirect: { name: routeName.noticeOverView },
+      },
+      {
+        path: 'overview',
+        name: routeName.noticeOverView,
+        component: () => import('@/views/notice/overview.vue'),
+      },
+      // {
+      //   path: ':id/viewDetail',
+      //   name: routeName.externalIncomingDocumentViewDetail,
+      //   component: () => import('@/views/send-incoming-document/view-detail.vue'),
+      // },
+      // {
+      //   path: 'newIncomingDocument',
+      //   name: routeName.externalIncomingNewIncomingDocument,
+      //   component: () => import('@/views/send-incoming-document/new-incoming-document.vue'),
+      // },
+    ],
+  },
+  {
     path: '/workbench', //  工作台 -> 子页面
     name: 'Index',
     component: () => import('@/views/workbench/index.vue'),

@@ -16,4 +16,7 @@ export const routeName = {
   sendDocumentOverView: 'sendDocumentOverView',
   sendDocumentViewDetail: 'sendDocumentViewDetail',
   sendDocumentNewSendDocument: 'sendDocumentNewSendDocument',
+  // 公告管理
+  notice: 'notice',
+  noticeOverView: 'noticeOverView',
 };
