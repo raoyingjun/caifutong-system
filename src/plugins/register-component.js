@@ -7,6 +7,7 @@ import BaseConfirmDialog from '@/components/base-confirm-dialog.vue';
 import BaseUpload from '@/components/base-upload.vue';
 import FixedOperation from '@/components/fixed-operation.vue';
 import UserSelect from '@/components/user-select.vue';
+import Editor from '@/components/editor.vue';
 
 export default {
   install(app) {
@@ -22,5 +23,6 @@ export default {
     app.component('BaseUpload', BaseUpload);
     app.component('FixedOperation', FixedOperation);
     app.component('UserSelect', UserSelect);
+    app.component('Editor', Editor);
   },
 };
