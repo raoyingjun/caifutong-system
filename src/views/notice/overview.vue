@@ -85,7 +85,7 @@
             @click="$router.push({ name: routeName.externalIncomingDocumentViewDetail, params: { id: row.ID } })"
             >编辑
           </el-button>
-          <el-button type="primary" link @click="singleDelete(row.id)">删除</el-button>
+          <el-button type="danger" link @click="singleDelete(row.id)">删除</el-button>
         </template>
       </el-table-column>
     </base-table>
