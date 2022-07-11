@@ -19,4 +19,5 @@ export const routeName = {
   // 公告管理
   notice: 'notice',
   noticeOverView: 'noticeOverView',
+  newNotice: 'newNotice',
 };

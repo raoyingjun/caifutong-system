@@ -114,11 +114,11 @@ export default [
       //   name: routeName.externalIncomingDocumentViewDetail,
       //   component: () => import('@/views/send-incoming-document/view-detail.vue'),
       // },
-      // {
-      //   path: 'newIncomingDocument',
-      //   name: routeName.externalIncomingNewIncomingDocument,
-      //   component: () => import('@/views/send-incoming-document/new-incoming-document.vue'),
-      // },
+      {
+        path: 'newNotice',
+        name: routeName.newNotice,
+        component: () => import('@/views/notice/new-notice.vue'),
+      },
     ],
   },
   {
