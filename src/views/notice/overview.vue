@@ -32,7 +32,7 @@
             type="primary"
             class="ml-16"
             :icon="CirclePlus"
-            @click="$router.push({ name: routeName.externalIncomingNewIncomingDocument })"
+            @click="$router.push({ name: routeName.newNotice })"
           >
             新建
           </el-button>
@@ -94,7 +94,7 @@
     v-model="messageTipDialogVisible"
     :msg="msg"
     :confirm-loading="confirmLoading"
-    @cancel="messageTipDialogVisible = false"
+    @cancel="closeMessageTip"
     @confirm="confirmMessageTip"
   />
 </template>
@@ -128,7 +128,7 @@ const msg = computed(() => {
     if (tops.value >= 3) {
       return '只能置顶3条公告，取消其他置顶才可以置顶这条公告';
     }
-  } else if (currentAction.value === 'delete') {
+  } else if (currentAction.value === 'singleDelete' || currentAction.value === 'multiDelete') {
     return '该公告删除后无法恢复，是否确认删除？';
   }
 
@@ -136,7 +136,7 @@ const msg = computed(() => {
 });
 const selectedIds = ref([]);
 const singleDelete = async (id) => {
-  currentAction.value = 'delete';
+  currentAction.value = 'singleDelete';
   selectedIds.value = [id];
   messageTipDialogVisible.value = true;
 };
@@ -146,7 +146,7 @@ const selectionChange = (notices) => {
 };
 
 const multiDelete = () => {
-  currentAction.value = 'delete';
+  currentAction.value = 'multiDelete';
   messageTipDialogVisible.value = true;
 };
 
@@ -161,12 +161,20 @@ const handleDelete = async () => {
 
 const confirmMessageTip = () => {
   switch (currentAction.value) {
-    case 'delete':
+    case 'singleDelete':
+    case 'multiDelete':
       handleDelete(selectedIds.value);
       break;
     case 'setTop':
       messageTipDialogVisible.value = false;
       break;
+  }
+};
+
+const closeMessageTip = () => {
+  messageTipDialogVisible.value = false;
+  if (currentAction.value === 'singleDelete') {
+    selectedIds.value = [];
   }
 };
 
