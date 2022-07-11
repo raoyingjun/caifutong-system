@@ -14,4 +14,8 @@ export default {
   deleteNotice: (ids) => {
     return http.post('/notice/delete', ids);
   },
+  // 设置公告
+  createNotice: (postData) => {
+    return http.post('/notice', postData);
+  },
 };
