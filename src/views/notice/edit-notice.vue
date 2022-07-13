@@ -48,10 +48,12 @@ const ui2api = () => {
 
 const api2ui = (result) => {
   const form = {};
-  form.fileUrls = result.FileURLs.split(';').map((url) => ({
-    name: substringFileName(url),
-    url,
-  }));
+  form.fileUrls = result.FileURLs
+    ? result.FileURLs.split(';').map((url) => ({
+        name: substringFileName(url),
+        url,
+      }))
+    : [];
   form.content = result.Content;
   form.title = result.Title;
   form.time = result.CreateTime;
