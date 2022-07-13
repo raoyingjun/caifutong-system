@@ -20,6 +20,8 @@ import '@wangeditor/editor/dist/css/style.css'; // 引入 css
 
 import { onBeforeUnmount, shallowRef, computed } from 'vue';
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
+import { getFileUploadUrl } from '../configs/env';
+
 const props = defineProps({
   modelValue: String,
 });
@@ -37,8 +39,23 @@ const mode = 'default'; // 或 'simple'
 // 编辑器实例，必须用 shallowRef
 const editorRef = shallowRef();
 
-const toolbarConfig = { excludeKeys: 'fullScreen' };
-const editorConfig = { placeholder: '请输入内容...' };
+const toolbarConfig = { excludeKeys: ['fullScreen', 'group-video'] };
+const editorConfig = {
+  placeholder: '请输入内容...',
+
+  MENU_CONF: {
+    uploadImage: {
+      server: getFileUploadUrl(),
+      fieldName: 'files',
+      customInsert(res, insertFn) {
+        // res 即服务端的返回结果
+
+        // 从 res 中找到 url alt href ，然后插图图片
+        insertFn(res.data[0]);
+      },
+    },
+  },
+};
 
 // 组件销毁时，也及时销毁编辑器
 onBeforeUnmount(() => {
