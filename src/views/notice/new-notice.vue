@@ -8,7 +8,7 @@
         <editor v-model="form.content" />
       </el-form-item>
       <el-form-item label="附件上传">
-        <base-upload :action="getFileUploadUrl()" :on-success="handleUploadSuccess" />
+        <base-upload v-model:file-list="form.fileUrls" :action="getFileUploadUrl()" />
       </el-form-item>
       <el-form-item label="发布日期">
         <el-date-picker style="width: 432px" type="datetime" :model-value="Date()" disabled />
@@ -29,18 +29,16 @@ import { notice as api } from '@/apis';
 import { ElMessage } from 'element-plus';
 import { getFileUploadUrl } from '@/configs/env';
 import { reactive, provide, ref } from 'vue';
+
 const form = reactive({
   title: '',
   content: '',
   fileUrls: [],
 });
-const handleUploadSuccess = ({ data: uploadedFilesPath }) => {
-  form.fileUrls = uploadedFilesPath;
-};
 
 const ui2api = () => {
   const formData = cloneDeep(form);
-  formData.fileUrls = formData.fileUrls.join(';');
+  formData.fileUrls = formData.fileUrls.map(({ response: { data } }) => data[0]).join(';');
   return formData;
 };
 
