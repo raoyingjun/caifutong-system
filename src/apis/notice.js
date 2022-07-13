@@ -6,6 +6,10 @@ export default {
   getNoticeList: (postData) => {
     return http.post('/notice/list', postData);
   },
+  // 获取公告
+  getNoticeById: (id) => {
+    return http.get(`/notice/detail`, { params: { id } });
+  },
   // 设置公告
   updateNotice: (postData) => {
     return http.put('/notice', postData);
