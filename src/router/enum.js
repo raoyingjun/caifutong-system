@@ -20,4 +20,5 @@ export const routeName = {
   notice: 'notice',
   noticeOverView: 'noticeOverView',
   newNotice: 'newNotice',
+  editNotice: 'editNotice',
 };

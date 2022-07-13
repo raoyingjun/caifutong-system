@@ -32,11 +32,6 @@ export default [
         ],
       },
       {
-        path: 'viewMore',
-        name: routeName.HomeViewMore,
-        component: () => import('@/views/home/view-more.vue'),
-      },
-      {
         path: 'viewDetail',
         name: routeName.HomeViewDetail,
         component: () => import('@/views/home/view-detail.vue'),
@@ -109,15 +104,15 @@ export default [
         name: routeName.noticeOverView,
         component: () => import('@/views/notice/overview.vue'),
       },
-      // {
-      //   path: ':id/viewDetail',
-      //   name: routeName.externalIncomingDocumentViewDetail,
-      //   component: () => import('@/views/send-incoming-document/view-detail.vue'),
-      // },
       {
         path: 'newNotice',
         name: routeName.newNotice,
         component: () => import('@/views/notice/new-notice.vue'),
+      },
+      {
+        path: ':id/editNotice',
+        name: routeName.editNotice,
+        component: () => import('@/views/notice/edit-notice.vue'),
       },
     ],
   },
