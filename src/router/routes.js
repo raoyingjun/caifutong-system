@@ -31,11 +31,6 @@ export default [
           },
         ],
       },
-      {
-        path: 'viewDetail',
-        name: routeName.HomeViewDetail,
-        component: () => import('@/views/home/view-detail.vue'),
-      },
     ],
   },
   {
@@ -113,6 +108,11 @@ export default [
         path: ':id/editNotice',
         name: routeName.editNotice,
         component: () => import('@/views/notice/edit-notice.vue'),
+      },
+      {
+        path: ':id/noticeDetail',
+        name: routeName.noticeDetail,
+        component: () => import('@/views/notice/notice-detail.vue'),
       },
     ],
   },
