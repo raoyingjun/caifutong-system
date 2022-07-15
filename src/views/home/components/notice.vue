@@ -25,8 +25,13 @@
           </el-icon>
         </el-col>
         <el-col :span="14">
-          {{ notice.title }}
-          <el-tag v-if="index < 3" class="tag ml-16">置顶</el-tag>
+          <el-link
+            :underline="false"
+            @click="$router.push({ name: routeName.noticeDetail, params: { id: notice.id } })"
+          >
+            {{ notice.title }}
+            <el-tag v-if="index < 3" class="tag ml-16">置顶</el-tag>
+          </el-link>
         </el-col>
         <el-col :span="5" class="g-text-secondary"> {{ notice.createdName }}</el-col>
         <el-col :span="4" class="g-text-secondary justify-end"> {{ notice.createTime }}</el-col>
