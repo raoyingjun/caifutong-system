@@ -37,6 +37,7 @@ const form = reactive({
   content: '',
   fileUrls: [],
   id: Number(route.params.id),
+  time: '',
 });
 const loading = ref(false);
 
