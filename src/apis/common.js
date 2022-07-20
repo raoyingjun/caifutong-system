@@ -21,6 +21,10 @@ export default {
   getExternalIncomingTags: (keywords = '') => {
     return http.post('/tag/list', { keywords });
   },
+  // 获取收文标签类型
+  getTagTypes: () => {
+    return http.get('/tag/types');
+  },
   // 搜索指定用户列表
   findUserList: (keywords) => {
     return http.post('/user/common-infos', { keywords });
