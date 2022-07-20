@@ -10,7 +10,8 @@ export default createStore({
     incomingDocTypes: [], // 收文类型
     urgencyDegrees: [], // 紧急程度
     incomingDocSecretLevels: [], // 保密程度
-    incomingDocTags: [], // 收文标签
+    incomingDocTags: [], // 收文标签名
+    tagTypes: [], // 标签类型
     layoutFooterVisible: false,
     // 总公司列表
     rootCompanyList: [
@@ -27,6 +28,9 @@ export default createStore({
     },
     urgencyDegreesIncludeAll(state) {
       return [{ key: '全部', value: 0 }].concat(state.urgencyDegrees);
+    },
+    tagTypesIncludeAll(state) {
+      return [{ key: '全部', value: 0 }].concat(state.tagTypes);
     },
   },
 
@@ -49,6 +53,9 @@ export default createStore({
     setIncomingDocTags(state, incomingDocTags) {
       state.incomingDocTags = incomingDocTags;
     },
+    setTagTypes(state, tagTypes) {
+      state.tagTypes = tagTypes;
+    },
   },
 
   actions: {
@@ -67,6 +74,10 @@ export default createStore({
     async getIncomingDocTags({ commit }) {
       const { data } = await common.getExternalIncomingTags();
       commit('setIncomingDocTags', data);
+    },
+    async getTagTypes({ commit }) {
+      const { data } = await common.getTagTypes();
+      commit('setTagTypes', data);
     },
   },
 });

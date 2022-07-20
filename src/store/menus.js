@@ -48,4 +48,11 @@ export default [
     icon: '',
     limit: '',
   },
+  {
+    id: '6',
+    name: '标签管理',
+    path: '/tag',
+    icon: '',
+    limit: '',
+  },
 ];
