@@ -117,6 +117,22 @@ export default [
     ],
   },
   {
+    path: '/tag', // 外部收文
+    name: routeName.tag,
+    component: () => import('@/views/tag/index.vue'),
+    children: [
+      {
+        path: '',
+        redirect: { name: routeName.tagOverView },
+      },
+      {
+        path: 'overview',
+        name: routeName.tagOverView,
+        component: () => import('@/views/tag/overview.vue'),
+      },
+    ],
+  },
+  {
     path: '/workbench', //  工作台 -> 子页面
     name: 'Index',
     component: () => import('@/views/workbench/index.vue'),

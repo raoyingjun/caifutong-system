@@ -21,4 +21,7 @@ export const routeName = {
   newNotice: 'newNotice',
   editNotice: 'editNotice',
   noticeDetail: 'noticeDetail',
+  // 标签管理
+  tag: 'tag',
+  tagOverView: 'tagOverView',
 };
